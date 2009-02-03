@@ -57,10 +57,11 @@
 	pages = {74--79}
 },
 
-@inproceedings{borkar_layered_2009,
+@inproceedings{amol_borkar_layered_2009,
 	title = {A Layered Approach To Robust Lane Detection At Night},
 	booktitle = {2009 {IEEE} Workshop on Computational Intelligence in Vehicles and Vehicular Systems},
-	author = {A. Borkar and M. H. Hayes and M. T. Smith and S. Pankanti},
+	author = {Amol Borkar and Monson Hayes {III} and Mark T. Smith and Sharathchandra Pankanti},
+	month = apr,
 	year = {2009}
 },
 

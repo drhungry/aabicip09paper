@@ -1,0 +1,154 @@
+% Template for ICIP-2009 paper; to be used with:
+%          spconf.sty  - ICASSP/ICIP LaTeX style file, and
+%          IEEEbib.bst - IEEE bibliography style file.
+% --------------------------------------------------------------------------
+\documentclass{article}
+\usepackage{spconf,amsmath,epsfig}
+
+% Example definitions.
+% --------------------
+\def\x{{\mathbf x}}
+\def\L{{\cal L}}
+
+% Title.
+% ------
+\title{AUTHOR GUIDELINES FOR ICIP 2009 PROCEEDINGS MANUSCRIPTS}
+%
+% Single address.
+% ---------------
+\name{Author(s) Name(s)\thanks{Thanks to XYZ agency for funding.}}
+\address{Author Affiliation(s)}
+%
+% For example:
+% ------------
+%\address{School\\
+%	Department\\
+%	Address}
+%
+% Two addresses (uncomment and modify for two-address case).
+% ----------------------------------------------------------
+%\twoauthors
+%  {A. Author-one, B. Author-two\sthanks{Thanks to XYZ agency for funding.}}
+%	{School A-B\\
+%	Department A-B\\
+%	Address A-B}
+%  {C. Author-three, D. Author-four\sthanks{The fourth author performed the work
+%	while at ...}}
+%	{School C-D\\
+%	Department C-D\\
+%	Address C-D}
+%
+\begin{document}
+%\ninept
+%
+\maketitle
+%
+\begin{abstract}
+Abstract goes here
+\end{abstract}
+%
+\begin{keywords}
+One, two, three, four, five
+\end{keywords}
+%
+\section{Introduction}
+\label{sec:intro}
+Intro
+
+\section{Prior Research}
+\label{sec:prior}
+Prior Work
+
+\section{Medthodology}
+\label{sec:methodology}
+
+\subsection{Image Enhancement}
+The acquired Bayer array images are reconstructed into their RGB representation and then converted to grayscale. This is followed by a temporal blurring process which helps to connect the dashed lane marker sequence in the image serving as an enhancement stage [].
+
+\subsection{Inverse Perspective Mapping}
+Inverse perspective mapping or IPM is an image transformation technique used to remove the perspective effect from an image. Application of this transform changes the appearance of the image from a forward facing camera view to a birds eye view []. The benefit of this approach is the simplification of lane marker detection and classification as the initially converging lane marker sequences now appear parallel. In addition, the transformation enables a mapping between pixels in the image plane to their corresponding locations in the world with metric co-ordinates. Camera parameters such as height from the ground, inclination and horizontal/vertical viewing angles need to be determined ahead of time to guarantee an accurate transformation. The IPM transform is applied to the average image acquired after application of the enhancements above.
+
+\subsection{Lane Candidate Location Detection}
+An adaptive threshold is applied to the IPM average image to generate a binary image []. The vertically aligned rectangular kernel is used in the adaptive threshold over a common square kernel as it tends to be more sensitive to contrast differences between the lane markers and the road. After splitting the image through the middle, a low resolution Hough transform is computed on the binary images and a set of X highest scoring lines are formulated into a list for each half image []. Each line in the list is then sampled along its length at specific distance co-ordinates. The corresponding location of each of these points in the IPM average image is recovered. A 1-D search window centered at each point in the IPM average image is used in the matched filter. With the birds eye view, the visualization of the lane marker sequence not only appears parallel, but each lane marker also maintains a constant width in the entire image; consequently, a fixed size and fixed variance Gaussian kernel is used in the matched filter. This was not the case in [] where a variety of variances had to be used to create the kernel on different scanlines. Matched filtering is iteratively performed on the remaining X-1 lines. As each of the X lines is sampled at the specific co-ordinates, X filtering results are available at each of these positions at the end of the iteration. As a result, the location with the highest correlation coefficient at each distance co-ordinate is chosen as the best estimate.
+
+Upon acquiring the sequence of best estimates, Random Sample Consensus (RANSAC) is applied to the data points. The generic RANSAC algorithm robustly fits a model through the most probable data set or inliers while rejecting outliers []. Linear Least Squares Estimation (LSE) is then used to fit to a line on the inliers. The orientation of line is represented in terms of (r,t) with respect to the origin of the image (top left). A line is chosen over a curve as minor perturbations in the inliers tended to produce unpredictable shapes in the representation.
+
+\subsection{Tracking}
+The orientation of the line is tracked using a Kalman Filter. The state and measurement vectors are shown below. \rho and \theta represent the orientation of the line while \delta\rho and \delta\theta represent the changes that rho and theta undergo between the current and previous frames. Piece-wise linearity is assumed between the frames allowing use of the Kalman Filter. Values of additional matrices are shown below.
+
+The independence between the variables in xn and yn allows a simplified creation of the covariance matrices. Qw and Qv are essentially diagonal matrices with weights corresponding to the variances of the independent variables. As measurement data can be noisy, the application of the Kalman Filter in this context is to smooth the results. Pseudo code for the Kalman Filter is presented below.
+
+In the case of a lane marker sequence not being detected, the values in Qv are increased significantly to force the Kalman Filter to rely purely on prediction. Upon reappearance, the values in Qv are reset to initial conditions.
+
+%
+%\[ x(n) = \left[ \begin{array}{ccc}
+%\rho\\
+%\delta\rho\\
+%\theta\\
+%\delta\theta\end{array} \right]\]
+%
+%Similarly, the measurement vector is also written as:\\
+%\[ y(n) = \left[ \begin{array}{ccc}
+%\rho\\
+%\delta\rho\\
+%\theta\\
+%\delta\theta\end{array} \right]\]
+
+%% Below is an example of how to insert images. Delete the ``\vspace'' line,
+%% uncomment the preceding line ``\centerline...'' and replace ``imageX.ps''
+%% with a suitable PostScript file name.
+%% -------------------------------------------------------------------------
+%\begin{figure}[htb]
+%
+%\begin{minipage}[b]{1.0\linewidth}
+%  \centering
+%% \centerline{\epsfig{figure=image1.ps,width=8.5cm}}
+%  \vspace{2.0cm}
+%  \centerline{(a) Result 1}\medskip
+%\end{minipage}
+%%
+%\begin{minipage}[b]{.48\linewidth}
+%  \centering
+%% \centerline{\epsfig{figure=image3.ps,width=4.0cm}}
+%  \vspace{1.5cm}
+%  \centerline{(b) Results 3}\medskip
+%\end{minipage}
+%\hfill
+%\begin{minipage}[b]{0.48\linewidth}
+%  \centering
+%% \centerline{\epsfig{figure=image4.ps,width=4.0cm}}
+%  \vspace{1.5cm}
+%  \centerline{(c) Result 4}\medskip
+%\end{minipage}
+%%
+%\caption{Example of placing a figure with experimental results.}
+%\label{fig:res}
+%%
+%\end{figure}
+
+\section{Results}
+\label{sec:results}
+
+\section{Conclusions}
+\label{sec:concl}
+
+
+\section{Future Work}
+\label{sec:print}
+
+%\vfill
+%\pagebreak
+
+
+\section{REFERENCES}
+\label{sec:ref}
+
+
+% References should be produced using the bibtex program from suitable
+% BiBTeX files (here: strings, refs, manuals). The IEEEbib.bst bibliography
+% style file from IEEE produces unsorted bibliography list.
+% -------------------------------------------------------------------------
+\bibliographystyle{IEEEbib}
+%\bibliography{strings,refs}
+
+\end{document}

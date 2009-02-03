@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.1415926-1.40.9 (MiKTeX 2.7) (preloaded format=pdflatex 2009.1.27)  2 FEB 2009 22:09
+This is pdfTeX, Version 3.1415926-1.40.9 (MiKTeX 2.7) (preloaded format=pdflatex 2009.1.27)  3 FEB 2009 14:36
 entering extended mode
-**D:/ICIP*2009/Template.tex
-("D:/ICIP 2009/Template.tex"
+**D:/ICIP*2009/icip2009.tex
+("D:/ICIP 2009/icip2009.tex"
 LaTeX2e <2005/12/01>
 Babel <v3.8l> and hyphenation patterns for english, dumylang, nohyphenation, ge
 rman, ngerman, german-x-2008-06-18, ngerman-x-2008-06-18, french, loaded.
@@ -111,7 +111,7 @@ File: pdftex.def 2008/07/16 v0.04k Graphics/color for pdfTeX
 \epsfxsize=\dimen114
 \epsfysize=\dimen115
 )
-(Template.aux)
+(icip2009.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 41.
 LaTeX Font Info:    ... okay on input line 41.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 41.
@@ -146,28 +146,29 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 46.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 56.
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 50.
  [1{C:/Documents and Settings/All Users/Application Data/MiKTeX/2.7/pdftex/conf
 ig/pdftex.map}
 
 
 
-] (Template.bbl) [2] (Template.aux) ) 
+] (icip2009.bbl) [2
+
+] (icip2009.aux) ) 
 Here is how much of TeX's memory you used:
- 1620 strings out of 95304
- 18491 string characters out of 1183032
- 75729 words of memory out of 1500000
- 4835 multiletter control sequences out of 110000
+ 1612 strings out of 95304
+ 18421 string characters out of 1183032
+ 75665 words of memory out of 1500000
+ 4827 multiletter control sequences out of 110000
  20508 words of font info for 44 fonts, out of 1200000 for 2000
  14 hyphenation exceptions out of 8191
- 32i,10n,21p,343b,251s stack positions out of 5000i,500n,10000p,200000b,5000s
-{C:/Program Files/MiKTeX 2.7/fonts/enc/dvi
-ps/fontname/8r.enc}<C:/Program Files/MiKTeX 2.7/fonts/type1/bluesky/cm/cmsy10.p
-fb><C:/Program Files/MiKTeX 2.7/fonts/type1/urw/times/utmb8a.pfb><C:/Program Fi
-les/MiKTeX 2.7/fonts/type1/urw/times/utmbi8a.pfb><C:/Program Files/MiKTeX 2.7/f
-onts/type1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.7/fonts/type1/urw/ti
-mes/utmri8a.pfb>
-Output written on Template.pdf (2 pages, 63015 bytes).
+ 32i,10n,21p,1624b,251s stack positions out of 5000i,500n,10000p,200000b,5000s
+{C:/Program Files/MiKTeX 2.7/fonts/enc/dvips/fontname/8r.enc}
+<C:/Program Files/MiKTeX 2.7/fonts/type1/bluesky/cm/cmmi10.pfb><C:/Program File
+s/MiKTeX 2.7/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.7/font
+s/type1/urw/times/utmbi8a.pfb><C:/Program Files/MiKTeX 2.7/fonts/type1/urw/time
+s/utmr8a.pfb><C:/Program Files/MiKTeX 2.7/fonts/type1/urw/times/utmri8a.pfb>
+Output written on icip2009.pdf (2 pages, 63522 bytes).
 PDF statistics:
  30 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)
