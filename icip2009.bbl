@@ -1,0 +1,16 @@
+\begin{thebibliography}{1}
+
+\bibitem{borkar_layered_2009}
+A.~Borkar, M.~H. Hayes, M.~T. Smith, and S.~Pankanti,
+\newblock ``A layered approach to robust lane detection at night,''
+\newblock in {\em 2009 {IEEE} Workshop on Computational Intelligence in
+  Vehicles and Vehicular Systems}, 2009.
+
+\bibitem{chen_target_2004}
+C.~Chen, H.~Wang, and T.~C. Ng,
+\newblock ``Target tracking and path planning for vehicle following in jungle
+  environment,''
+\newblock in {\em 8th International Conference on Control, Automation, Robotics
+  and Vision}, 2004, pp. 455--460.
+
+\end{thebibliography}
