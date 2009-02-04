@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.9 (MiKTeX 2.7) (preloaded format=pdflatex 2009.1.27)  3 FEB 2009 14:36
+This is pdfTeX, Version 3.1415926-1.40.9 (MiKTeX 2.7) (preloaded format=pdflatex 2009.2.3)  3 FEB 2009 22:55
 entering extended mode
 **D:/ICIP*2009/icip2009.tex
 ("D:/ICIP 2009/icip2009.tex"
@@ -111,7 +111,87 @@ File: pdftex.def 2008/07/16 v0.04k Graphics/color for pdfTeX
 \epsfxsize=\dimen114
 \epsfysize=\dimen115
 )
-(icip2009.aux)
+("C:\Program Files\MiKTeX 2.7\tex\latex\subfig\subfig.sty"
+Package: subfig 2005/06/28 ver: 1.3 subfig package
+
+("C:\Program Files\MiKTeX 2.7\tex\latex\caption\caption.sty"
+Package: caption 2008/08/24 v3.1j Customizing captions (AR)
+
+("C:\Program Files\MiKTeX 2.7\tex\latex\caption\caption3.sty"
+Package: caption3 2008/08/24 v3.1j caption3 kernel (AR)
+\captionmargin=\dimen116
+\captionmargin@=\dimen117
+\captionwidth=\dimen118
+\caption@indent=\dimen119
+\caption@parindent=\dimen120
+\caption@hangindent=\dimen121
+Package caption Info: Unknown document class (or package),
+(caption)             standard defaults will be used on input line 1027.
+)
+
+Package caption Warning: Unsupported document class (or package) detected,
+(caption)                usage of the caption package is not recommended.
+See the caption package documentation for explanation.
+
+Package caption Info: \@makecaption = \long macro:#1#2-> \vskip 10pt \setbox \@
+tempboxa \hbox {#1. #2} \ifdim \wd \@tempboxa >\hsize #1. #2\par \else \hbox to
+\hsize {\hfil \box \@tempboxa \hfil } \fi .
+\c@ContinuedFloat=\count100
+)
+\c@KVtest=\count101
+\sf@farskip=\skip46
+\sf@captopadj=\dimen122
+\sf@capskip=\skip47
+\sf@nearskip=\skip48
+\c@subfigure=\count102
+\c@subfigure@save=\count103
+\c@lofdepth=\count104
+\c@subtable=\count105
+\c@subtable@save=\count106
+\c@lotdepth=\count107
+\sf@top=\skip49
+\sf@bottom=\skip50
+) ("C:\Program Files\MiKTeX 2.7\tex\latex\algorithms\algorithm.sty"
+Package: algorithm 
+
+Document Style `algorithm' - floating environment
+("C:\Program Files\MiKTeX 2.7\tex\latex\float\float.sty"
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count108
+\float@exts=\toks20
+\float@box=\box28
+\@float@everytoks=\toks21
+\@floatcapt=\box29
+)
+("C:\Program Files\MiKTeX 2.7\tex\latex\base\ifthen.sty"
+Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\@float@every@algorithm=\toks22
+\c@algorithm=\count109
+)
+("C:\Program Files\MiKTeX 2.7\tex\latex\algorithms\algorithmic.sty"
+Package: algorithmic 2006/06/02
+
+Document Style `algorithmic' - environment
+("C:\Program Files\MiKTeX 2.7\tex\latex\tools\calc.sty"
+Package: calc 2005/08/06 v4.2 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count110
+\calc@Bcount=\count111
+\calc@Adimen=\dimen123
+\calc@Bdimen=\dimen124
+\calc@Askip=\skip51
+\calc@Bskip=\skip52
+LaTeX Info: Redefining \setlength on input line 75.
+LaTeX Info: Redefining \addtolength on input line 76.
+\calc@Ccount=\count112
+\calc@Cskip=\skip53
+)
+\c@ALC@line=\count113
+\c@ALC@rem=\count114
+\c@ALC@depth=\count115
+\ALC@tlm=\skip54
+\algorithmicindent=\skip55
+) (icip2009.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 41.
 LaTeX Font Info:    ... okay on input line 41.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 41.
@@ -125,52 +205,82 @@ LaTeX Font Info:    ... okay on input line 41.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 41.
 LaTeX Font Info:    ... okay on input line 41.
 LaTeX Font Info:    Try loading font information for OT1+ptm on input line 41.
- ("C:\Program Files\MiKTeX 2.7\tex\latex\psnfss\ot1ptm.fd"
+
+("C:\Program Files\MiKTeX 2.7\tex\latex\psnfss\ot1ptm.fd"
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 ("C:\Program Files\MiKTeX 2.7\tex\context\base\supp-pdf.tex"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count100
-\scratchdimen=\dimen116
-\scratchbox=\box28
-\nofMPsegments=\count101
-\nofMParguments=\count102
-\everyMPshowfont=\toks20
-\MPscratchCnt=\count103
-\MPscratchDim=\dimen117
-\MPnumerator=\count104
-\everyMPtoPDFconversion=\toks21
+\scratchcounter=\count116
+\scratchdimen=\dimen125
+\scratchbox=\box30
+\nofMPsegments=\count117
+\nofMParguments=\count118
+\everyMPshowfont=\toks23
+\MPscratchCnt=\count119
+\MPscratchDim=\dimen126
+\MPnumerator=\count120
+\everyMPtoPDFconversion=\toks24
 )
+Package caption Info: Begin \AtBeginDocument code.
+Package caption3 Info: subfig package 1.2 or 1.3 is loaded.
+LaTeX Info: Redefining \subref on input line 41.
+Package caption Info: float package is loaded.
+Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 44.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 46.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10> not available
 (Font)              Font shape `OT1/ptm/b/it' tried instead on input line 50.
- [1{C:/Documents and Settings/All Users/Application Data/MiKTeX/2.7/pdftex/conf
-ig/pdftex.map}
+
+Underfull \hbox (badness 10000) in paragraph at lines 81--82
+
+ []
+
+[1{C:/Documents and Settings/All Users/Application Data/MiKTeX/2.7/pdftex/confi
+g/pdftex.map}
 
 
 
-] (icip2009.bbl) [2
+]
+Underfull \hbox (badness 10000) in paragraph at lines 92--93
 
-] (icip2009.aux) ) 
+ []
+
+
+Underfull \hbox (badness 1342) in paragraph at lines 105--106
+[] []$\OML/cmm/m/it/10 K\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 n\OT1/cmr/m/n/10 ) = 
+\OML/cmm/m/it/10 P\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 n \OMS/cmsy/m/n/10   \OT1/c
+mr/m/n/10 1\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 n \OMS/cmsy/m/n/10   \OT1/cmr/m/n
+/10 1)\OML/cmm/m/it/10 C[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 n\OT1/cmr/m/n/10 )[
+\OML/cmm/m/it/10 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 n\OT1/cmr/m/n/10 )\OML/cmm/
+m/it/10 P\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 n\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 
+n \OMS/cmsy/m/n/10  
+ []
+
+(icip2009.bbl) [2] (icip2009.aux) ) 
 Here is how much of TeX's memory you used:
- 1612 strings out of 95304
- 18421 string characters out of 1183032
- 75665 words of memory out of 1500000
- 4827 multiletter control sequences out of 110000
+ 2990 strings out of 95304
+ 40773 string characters out of 1183033
+ 113697 words of memory out of 1500000
+ 6182 multiletter control sequences out of 110000
  20508 words of font info for 44 fonts, out of 1200000 for 2000
  14 hyphenation exceptions out of 8191
- 32i,10n,21p,1624b,251s stack positions out of 5000i,500n,10000p,200000b,5000s
-{C:/Program Files/MiKTeX 2.7/fonts/enc/dvips/fontname/8r.enc}
-<C:/Program Files/MiKTeX 2.7/fonts/type1/bluesky/cm/cmmi10.pfb><C:/Program File
-s/MiKTeX 2.7/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.7/font
-s/type1/urw/times/utmbi8a.pfb><C:/Program Files/MiKTeX 2.7/fonts/type1/urw/time
-s/utmr8a.pfb><C:/Program Files/MiKTeX 2.7/fonts/type1/urw/times/utmri8a.pfb>
-Output written on icip2009.pdf (2 pages, 63522 bytes).
+ 44i,10n,42p,1420b,501s stack positions out of 5000i,500n,10000p,200000b,5000s
+{C:/Program Files/MiKTeX 2.7/fonts/enc/dvips
+/fontname/8r.enc}<C:/Program Files/MiKTeX 2.7/fonts/type1/bluesky/cm/cmex10.pfb
+><C:/Program Files/MiKTeX 2.7/fonts/type1/bluesky/cm/cmmi10.pfb><C:/Program Fil
+es/MiKTeX 2.7/fonts/type1/bluesky/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.7/fon
+ts/type1/bluesky/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.7/fonts/type1/bluesky/
+cm/cmr7.pfb><C:/Program Files/MiKTeX 2.7/fonts/type1/bluesky/cm/cmsy10.pfb><C:/
+Program Files/MiKTeX 2.7/fonts/type1/bluesky/cm/cmsy7.pfb><C:/Program Files/MiK
+TeX 2.7/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.7/fonts/typ
+e1/urw/times/utmbi8a.pfb><C:/Program Files/MiKTeX 2.7/fonts/type1/urw/times/utm
+r8a.pfb><C:/Program Files/MiKTeX 2.7/fonts/type1/urw/times/utmri8a.pfb>
+Output written on icip2009.pdf (2 pages, 84870 bytes).
 PDF statistics:
- 30 PDF objects out of 1000 (max. 8388607)
+ 54 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -6,11 +6,35 @@ A.~Borkar, M.~H. Hayes, M.~T. Smith, and S.~Pankanti,
 \newblock in {\em 2009 {IEEE} Workshop on Computational Intelligence in
   Vehicles and Vehicular Systems}, 2009.
 
-\bibitem{chen_target_2004}
-C.~Chen, H.~Wang, and T.~C. Ng,
-\newblock ``Target tracking and path planning for vehicle following in jungle
-  environment,''
-\newblock in {\em 8th International Conference on Control, Automation, Robotics
-  and Vision}, 2004, pp. 455--460.
+\bibitem{sehestedt_robust_2007}
+S.~Sehestedt, S.~Kodagoda, A.~Alempijevic, and G.~Dissanayake,
+\newblock ``Robust lane detection in urban environments,''
+\newblock in {\em {IEEE/RSJ} International Conference on Intelligent Robots and
+  Systems}, 2007, pp. 123--128.
+
+\bibitem{shu_vision_2004}
+Y.~Shu and Z.~Tan,
+\newblock ``Vision based lane detection in autonomous vehicle,''
+\newblock in {\em Fifth World Congress on Intelligent Control and Automation},
+  2004, vol.~6, pp. 5258--5260.
+
+\bibitem{bertozzi_gold:parallel_1998}
+M~Bertozzi and A~Broggi,
+\newblock ``{GOLD:} a parallel real-time stereo vision system for generic
+  obstacle and lane detection,''
+\newblock {\em {IEEE} Transactions on Image Processing}, vol. 7, no. 1, pp.
+  62--81, 1998.
+
+\bibitem{hartley_multiple_2004}
+Richard Hartley and Andrew Zisserman,
+\newblock {\em Multiple View Geometry in Computer Vision},
+\newblock Cambridge University Press, 2 edition, Apr. 2004.
+
+\bibitem{fischler_random_1981}
+Martin~A. Fischler and Robert~C. Bolles,
+\newblock ``Random sample consensus: a paradigm for model fitting with
+  applications to image analysis and automated cartography,''
+\newblock {\em Communications of the {ACM}}, vol. 24, no. 6, pp. 381--395,
+  1981.
 
 \end{thebibliography}
