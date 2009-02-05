@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.9 (MiKTeX 2.7) (preloaded format=pdflatex 2009.2.3)  3 FEB 2009 22:55
+This is pdfTeX, Version 3.1415926-1.40.9 (MiKTeX 2.7) (preloaded format=pdflatex 2009.2.3)  4 FEB 2009 23:22
 entering extended mode
 **D:/ICIP*2009/icip2009.tex
 ("D:/ICIP 2009/icip2009.tex"
@@ -191,7 +191,23 @@ LaTeX Info: Redefining \addtolength on input line 76.
 \c@ALC@depth=\count115
 \ALC@tlm=\skip54
 \algorithmicindent=\skip55
-) (icip2009.aux)
+)
+("C:\Program Files\MiKTeX 2.7\tex\latex\multirow\multirow.sty"
+\bigstrutjot=\dimen125
+) (icip2009.aux
+
+LaTeX Warning: Label `fig:temp_blur_before' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:temp_blur_before' multiply defined.
+
+
+LaTeX Warning: Label `fig:temp_blur_after' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:temp_blur_after' multiply defined.
+
+)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 41.
 LaTeX Font Info:    ... okay on input line 41.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 41.
@@ -205,20 +221,19 @@ LaTeX Font Info:    ... okay on input line 41.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 41.
 LaTeX Font Info:    ... okay on input line 41.
 LaTeX Font Info:    Try loading font information for OT1+ptm on input line 41.
-
-("C:\Program Files\MiKTeX 2.7\tex\latex\psnfss\ot1ptm.fd"
+ ("C:\Program Files\MiKTeX 2.7\tex\latex\psnfss\ot1ptm.fd"
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 ("C:\Program Files\MiKTeX 2.7\tex\context\base\supp-pdf.tex"
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count116
-\scratchdimen=\dimen125
+\scratchdimen=\dimen126
 \scratchbox=\box30
 \nofMPsegments=\count117
 \nofMParguments=\count118
 \everyMPshowfont=\toks23
 \MPscratchCnt=\count119
-\MPscratchDim=\dimen126
+\MPscratchDim=\dimen127
 \MPnumerator=\count120
 \everyMPtoPDFconversion=\toks24
 )
@@ -233,54 +248,95 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 46.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10> not available
 (Font)              Font shape `OT1/ptm/b/it' tried instead on input line 50.
+ <IMG/ipm_fwd.png, id=1, 648.92438pt x 278.54062pt>
+File: IMG/ipm_fwd.png Graphic file (type png)
+ <use IMG/ipm_fwd.png>
+<IMG/cand_lane_points.png, id=2, 362.0727pt x 210.3057pt>
+File: IMG/cand_lane_points.png Graphic file (type png)
 
-Underfull \hbox (badness 10000) in paragraph at lines 81--82
+<use IMG/cand_lane_points.png>
+<IMG/cand_lane_points2.png, id=3, 362.10281pt x 194.97844pt>
+File: IMG/cand_lane_points2.png Graphic file (type png)
+
+<use IMG/cand_lane_points2.png> [1{C:/Documents and Settings/All Users/Applicat
+ion Data/MiKTeX/2.7/pdftex/config/pdftex.map}
+
+
+
+ <IMG/ipm_fwd.png (PNG copy)> <IMG/cand_lane_points.png (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 94--95
 
  []
 
-[1{C:/Documents and Settings/All Users/Application Data/MiKTeX/2.7/pdftex/confi
-g/pdftex.map}
 
-
-
-]
-Underfull \hbox (badness 10000) in paragraph at lines 92--93
+Underfull \hbox (badness 10000) in paragraph at lines 105--106
 
  []
 
 
-Underfull \hbox (badness 1342) in paragraph at lines 105--106
-[] []$\OML/cmm/m/it/10 K\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 n\OT1/cmr/m/n/10 ) = 
-\OML/cmm/m/it/10 P\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 n \OMS/cmsy/m/n/10   \OT1/c
-mr/m/n/10 1\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 n \OMS/cmsy/m/n/10   \OT1/cmr/m/n
-/10 1)\OML/cmm/m/it/10 C[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 n\OT1/cmr/m/n/10 )[
-\OML/cmm/m/it/10 C\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 n\OT1/cmr/m/n/10 )\OML/cmm/
-m/it/10 P\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 n\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 
-n \OMS/cmsy/m/n/10  
+Overfull \hbox (3.16852pt too wide) in paragraph at lines 156--156
+[]\OT1/ptm/m/n/10 Incorrect| 
  []
 
-(icip2009.bbl) [2] (icip2009.aux) ) 
+
+Overfull \hbox (3.16852pt too wide) in paragraph at lines 156--156
+[]\OT1/ptm/m/n/10 Incorrect| 
+ []
+
+<IMG/res1.png, id=12, 483.30562pt x 362.85562pt>
+File: IMG/res1.png Graphic file (type png)
+ <use IMG/res1.png>
+<IMG/res2.png, id=13, 483.30562pt x 362.85562pt>
+File: IMG/res2.png Graphic file (type png)
+ <use IMG/res2.png>
+<IMG/res3.png, id=14, 501.37312pt x 376.40625pt>
+File: IMG/res3.png Graphic file (type png)
+ <use IMG/res3.png>
+<IMG/res4.png, id=15, 483.30562pt x 362.85562pt>
+File: IMG/res4.png Graphic file (type png)
+ <use IMG/res4.png>
+<IMG/obs_pred_rho_crop.png, id=16, 716.1957pt x 419.166pt>
+File: IMG/obs_pred_rho_crop.png Graphic file (type png)
+
+<use IMG/obs_pred_rho_crop.png>
+Overfull \hbox (8.53583pt too wide) in paragraph at lines 171--171
+ [][] 
+ []
+
+<IMG/fail1.png, id=18, 483.30562pt x 362.85562pt>
+File: IMG/fail1.png Graphic file (type png)
+ <use IMG/fail1.png>
+<IMG/fail3.png, id=19, 501.37312pt x 376.40625pt>
+File: IMG/fail3.png Graphic file (type png)
+ <use IMG/fail3.png> [2 <IMG/cand_lane_points2.png (PNG copy)>] (icip2009.bbl [
+3 <IMG/res1.png (PNG copy)> <IMG/res2.png (PNG copy)> <IMG/res3.png (PNG copy)>
+ <IMG/res4.png (PNG copy)> <IMG/obs_pred_rho_crop.png> <IMG/fail1.png (PNG copy
+)> <IMG/fail3.png (PNG copy)>]) [4
+
+] (icip2009.aux)
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
 Here is how much of TeX's memory you used:
- 2990 strings out of 95304
- 40773 string characters out of 1183033
- 113697 words of memory out of 1500000
- 6182 multiletter control sequences out of 110000
+ 3051 strings out of 95304
+ 42193 string characters out of 1183033
+ 126711 words of memory out of 1500000
+ 6228 multiletter control sequences out of 110000
  20508 words of font info for 44 fonts, out of 1200000 for 2000
  14 hyphenation exceptions out of 8191
- 44i,10n,42p,1420b,501s stack positions out of 5000i,500n,10000p,200000b,5000s
-{C:/Program Files/MiKTeX 2.7/fonts/enc/dvips
-/fontname/8r.enc}<C:/Program Files/MiKTeX 2.7/fonts/type1/bluesky/cm/cmex10.pfb
-><C:/Program Files/MiKTeX 2.7/fonts/type1/bluesky/cm/cmmi10.pfb><C:/Program Fil
-es/MiKTeX 2.7/fonts/type1/bluesky/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.7/fon
-ts/type1/bluesky/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.7/fonts/type1/bluesky/
-cm/cmr7.pfb><C:/Program Files/MiKTeX 2.7/fonts/type1/bluesky/cm/cmsy10.pfb><C:/
-Program Files/MiKTeX 2.7/fonts/type1/bluesky/cm/cmsy7.pfb><C:/Program Files/MiK
-TeX 2.7/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.7/fonts/typ
-e1/urw/times/utmbi8a.pfb><C:/Program Files/MiKTeX 2.7/fonts/type1/urw/times/utm
-r8a.pfb><C:/Program Files/MiKTeX 2.7/fonts/type1/urw/times/utmri8a.pfb>
-Output written on icip2009.pdf (2 pages, 84870 bytes).
+ 44i,12n,45p,946b,374s stack positions out of 5000i,500n,10000p,200000b,5000s
+{C:/Program Files/MiKTeX 2.7/fonts/enc/dvips/fontname/8r.enc}<C:/Program File
+s/MiKTeX 2.7/fonts/type1/bluesky/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.7/fon
+ts/type1/bluesky/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.7/fonts/type1/bluesky
+/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.7/fonts/type1/bluesky/cm/cmr10.pfb><C:
+/Program Files/MiKTeX 2.7/fonts/type1/bluesky/cm/cmsy10.pfb><C:/Program Files/M
+iKTeX 2.7/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.7/fonts/t
+ype1/urw/times/utmbi8a.pfb><C:/Program Files/MiKTeX 2.7/fonts/type1/urw/times/u
+tmr8a.pfb><C:/Program Files/MiKTeX 2.7/fonts/type1/urw/times/utmri8a.pfb>
+Output written on icip2009.pdf (4 pages, 2961104 bytes).
 PDF statistics:
- 54 PDF objects out of 1000 (max. 8388607)
+ 64 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 51 words of extra memory for PDF output out of 10000 (max. 10000000)
 
