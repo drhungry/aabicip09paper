@@ -3,7 +3,7 @@
 %          IEEEbib.bst - IEEE bibliography style file.
 % --------------------------------------------------------------------------
 \documentclass{article}
-\usepackage{spconf,amsmath,epsfig}
+\usepackage{spconf,amsmath,epsfig,subfig,graphicx,algorithm,algorithmic,subfig,multirow}
 
 % Example definitions.
 % --------------------
@@ -18,7 +18,15 @@
 % ---------------
 \name{Author(s) Name(s)\thanks{Thanks to XYZ agency for funding.}}
 \address{Author Affiliation(s)}
-%
+%\name{\begin{tabular}[t]{c@{\extracolsep{8em}}c}
+%I. M. Anonymous  & M. Y. Coauthor\\
+% \\
+%        My Department & Coauthor Department\\
+%        My Institute & Coauthor Institute\\
+%        City, STATE~~zipcode & City, STATE~~zipcode
+%\end{tabular}}
+\address{}
+
 % For example:
 % ------------
 %\address{School\\
@@ -28,7 +36,7 @@
 % Two addresses (uncomment and modify for two-address case).
 % ----------------------------------------------------------
 %\twoauthors
-%  {A. Author-one, B. Author-two\sthanks{Thanks to XYZ agency for funding.}}
+%  {Amol Borkar, B. Author-two\sthanks{Thanks to XYZ agency for funding.}}
 %	{School A-B\\
 %	Department A-B\\
 %	Address A-B}
@@ -37,6 +45,7 @@
 %	{School C-D\\
 %	Department C-D\\
 %	Address C-D}
+
 %
 \begin{document}
 %\ninept
@@ -57,75 +66,151 @@ Intro
 
 \section{Prior Research}
 \label{sec:prior}
-Prior Work
+Vision based lane detection is a very heavily researched topic. Out of the numerous techniques have been developed over the years in an attempt to robustly detect lanes, the edge based approach is one of the most common []. In this approach, a Canny edge detector is commonly used to generate the binary edge map. This is followed by computing the classical Hough transform to determine the ideal position of the lane markers on the road. While this approach shows good results in general, it is easily skewed by shadows, cracks or adjacent vehicles. The application of color segmentation to extract lane markers from the road is another strategy []. Unfortunately, color segmentation is very sensitive to ambient light and requires additional processing to counter these effects.
 
-\section{Medthodology}
+\section{Methodology}
 \label{sec:methodology}
-
+This paper is an extension over the existing layered lane detection approach in \cite{borkar_layered_2009}. Each module is detailed below.
 \subsection{Image Enhancement}
-The acquired Bayer array images are reconstructed into their RGB representation and then converted to grayscale. This is followed by a temporal blurring process which helps to connect the dashed lane markers in the image serving as an enhancement stage [].
-
+The acquired Bayer array images are reconstructed into their RGB representation and then converted to grayscale. This is followed by a temporal blurring process which helps to connect the dashed lane marker sequence in the image serving as an enhancement stage \cite{borkar_layered_2009}.
 \subsection{Inverse Perspective Mapping}
-Inverse perspective mapping or IPM is an image transformation technique used to remove the perspective effect from an image. Application of this transform changes the appearance of the image from a forward facing camera view to a birds eye view []. The benefit of this approach is the simplification of lane marker detection and classification as the initially converging lane marker sequences now appear parallel. In addition, the transformation enables a mapping between pixels in the image plane to their corresponding locations in the world with metric co-ordinates. Camera parameters such as height from the ground, inclination and horizontal/vertical viewing angles need to be determined ahead of time to guarantee an accurate transformation. The IPM transform is applied to the average image after application of the image enhancements.
-%As distances nearing the horizon approach infinity, sub pixel values are needed to ensure good quality reconstruction of the IPM image; as a result, only a finite distance in the IPM image is mapped from the image plane. This also saves on computational time and memory.
-
+Inverse perspective mapping (IPM) is an image transformation technique used to remove the perspective effect from an image. As seen in Fig. \ref{fig:ipm}, application of this transform changes the appearance of the image from a forward facing camera view to a birds eye view. \cite{sehestedt_robust_2007,shu_vision_2004,bertozzi_gold:parallel_1998}.
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.45\textwidth]{IMG/ipm_fwd.png}
+  \caption{Inverse perspective mapping transforms an image into a birdseye view}
+  \label{fig:ipm}
+\end{figure}
+The benefit of this approach is the simplification of lane marker detection and classification as the initially converging lane marker sequences now appear parallel. In addition, the transformation enables a mapping between pixels in the image plane to their corresponding locations in the world with metric co-ordinates. Camera parameters such as height from the ground, inclination and horizontal/vertical viewing angles need to be determined ahead of time to guarantee an accurate transformation. The IPM transform is applied to the average image acquired after application of the enhancements above.
 \subsection{Lane Candidate Location Detection}
+An adaptive threshold is applied to the IPM average image to generate a binary image which is split into two halves \cite{borkar_layered_2009}. A low resolution Hough transform is then computed on the binary images and a set of X highest scoring lines are formulated into a list for each half image \cite{borkar_layered_2009}. Each line in the list is then sampled along its length at specific distance co-ordinates as symbolized by the red ``+" in Fig. \ref{fig:sampling_points}.
+%This is further illustrated in Fig. \ref{fig:sampling_points}, where the red lines symbolize the lines detected by computing the Hough transform, and, the yellow lines symbolize the discrete sampling locations.
+The corresponding location of each of these points in the IPM average image is recovered.
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.45\textwidth]{IMG/cand_lane_points.png}
+  \caption{Distances where the detected lines will be sampled in each half image. Cyan lines are the specific distance co-ordinates. Green lines are the Hough transforms' X highest scoring lines detected in the binary image. +'s are a few locations where the X lines are to be sampled.}
+  \label{fig:sampling_points}
+\end{figure}
+A 1-D search window centered at each point in the IPM average image is used in the matched filter. With the birds eye view, the visualization of the lane marker sequence not only appears parallel, but each lane marker also maintains a constant width in the entire image; consequently, a fixed size and fixed variance Gaussian kernel is used in the matched filter. This was not the case in \cite{borkar_layered_2009} where a variety of variances had to be used to create the kernel on different scanlines. Matched filtering is iteratively performed on the remaining X-1 lines. As each of the X lines is sampled at the specific co-ordinates, X filtering results are available at each of these positions upon completing the iterations. As a result, the location with the highest correlation coefficient at each distance co-ordinate is chosen as the best estimate as shown in Fig. \ref{fig:cand_pts}.
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.45\textwidth]{IMG/cand_lane_points2.png}
+  \caption{The best estimates for lane marker candidates in each half image}
+  \label{fig:cand_pts}
+\end{figure}
+\subsection{Outlier Elimination and Data Modeling}
+Upon acquiring the collection of best estimates, Random Sample Consensus (RANSAC) is applied to the data points. The generic RANSAC algorithm robustly fits a model through the most probable data set or inliers while rejecting outliers \cite{hartley_multiple_2004,fischler_random_1981}. Linear Least Squares Estimation (LSE) is then used to fit to a line on the inliers. The orientation of line is modeled in terms of $\rho$ and $\theta$ with respect to the origin (top left of the image). For data fitting, a line was chosen over a parabolic fit since the latter is more sensitive to minor perturbations within the inliers, this can result sometimes in desirably shaped curves.\\
+\subsection{Tracking}
+The orientation of the fitted line is predicted using a Kalman filter. The state vector $x(n)$ and observation vector $y(n)$ are defined as
+\begin{equation}
+x(n)= y(n)=\begin{bmatrix} \rho\\\dot{\rho}\\\theta\\\dot{\theta} \end{bmatrix}\\
+\label{eq:state_measure_vectors}
+\end{equation}\\
+where $\rho$ and $\theta$ are parameters used to model the orientation of the line, while $\dot{\rho}$ and $\dot{\theta}$ represent the derivatives of $\rho$ and $\theta$ computed over the current and previous frames. Piece-wise linearity is assumed between the frames allowing use of the Kalman filter \cite{hayes_statistical_1996,brookner_tracking_1998}. The state transition matrix $A$ and observation model $C$ are define as
+\begin{equation}
+A = \begin{bmatrix} 1 && 1 && 0 && 0 \\ 0 && 1 && 0 && 0 \\ 0 && 0 && 1 && 1 \\ 0 && 0 && 0 && 1 \\\end{bmatrix}\\
+\label{eq:state_trans}
+\end{equation}\\
+\begin{equation}
+C = \begin{bmatrix} 1 && 0 && 0 && 0 \\ 0 && 1 && 0 && 0 \\ 0 && 0 && 1 && 0 \\ 0 && 0 && 0 && 1 \\\end{bmatrix}\\
+\label{eq:observation_model}
+\end{equation}\\
+The independence between the variables in $x(n)$ and $y(n)$ allows creation of simple covariance matrices $Q_w$ and $Q_v$. $Q_w$ and $Q_v$ represent the process and observation noise respectively \cite{hayes_statistical_1996}.
+%\begin{algorithm}[htb]
+%\caption{Kalman filter implementation}
+%\label{algo:Kalman_Implementation}
+%\begin{algorithmic}[1]
+%\FOR{($n$=Current Frame)}
+%\STATE $\hat{x}(n|n-1)=A(n-1)\hat{x}(n-1|n-1)$
+%\STATE $P(n|n-1)=A(n-1)P(n-1|n-1)A^H(n-1)+Q_w(n)$
+%\STATE $K(n)=P(n-1|n-1)C^H(n)[C(n)P(n|n-1)C^H(n)+Q_v(n)]^{-1}$
+%\STATE $\hat{x}(n|n)=\hat{x}(n|n-1)+K(n)[y(n)-C(n)\hat{x}(n|n-1)]$
+%\STATE $P(n|n)=[I-K(n)C(n)]P(n|n-1)$
+%\ENDFOR
+%\end{algorithmic}
+%\end{algorithm}
+The covariance matrices are defined as identity and multiplied with non-uniform weights along the diagonal, these weights correspond to the variances of the parameters in $x(n)$ and $y(n)$. The Kalman filter recursively predicts the parameters in the state vector from the previously available information \cite{hayes_statistical_1996,brookner_tracking_1998}.
+%$P(n)$ and $K(n)$ represent error covariance matrix and optimal Kalman gain.
 
-%% Below is an example of how to insert images. Delete the ``\vspace'' line,
-%% uncomment the preceding line ``\centerline...'' and replace ``imageX.ps''
-%% with a suitable PostScript file name.
-%% -------------------------------------------------------------------------
-%\begin{figure}[htb]
-%
-%\begin{minipage}[b]{1.0\linewidth}
-%  \centering
-%% \centerline{\epsfig{figure=image1.ps,width=8.5cm}}
-%  \vspace{2.0cm}
-%  \centerline{(a) Result 1}\medskip
-%\end{minipage}
-%%
-%\begin{minipage}[b]{.48\linewidth}
-%  \centering
-%% \centerline{\epsfig{figure=image3.ps,width=4.0cm}}
-%  \vspace{1.5cm}
-%  \centerline{(b) Results 3}\medskip
-%\end{minipage}
-%\hfill
-%\begin{minipage}[b]{0.48\linewidth}
-%  \centering
-%% \centerline{\epsfig{figure=image4.ps,width=4.0cm}}
-%  \vspace{1.5cm}
-%  \centerline{(c) Result 4}\medskip
-%\end{minipage}
-%%
-%\caption{Example of placing a figure with experimental results.}
-%\label{fig:res}
-%%
-%\end{figure}
+In the case of a lane marker sequence not being detected, the values in $Q_v$ are increased significantly and $\hat{x}(n|n)$ is modified as Eq. \ref{eq:xnn_mod}
+\begin{equation}
+\hat{x}(n|n) = \hat{x}(n|n-1)
+\label{eq:xnn_mod}
+\end{equation}\\
+to force the Kalman filter to rely purely on prediction.
 
-\section{Results}
-\label{sec:results}
+Finally, after extraction from $\hat{x}(n|n)$, $\rho$ and $\theta$ are transformed back to the image plane and used to model the estimated orientation of the lane marker sequence. The series of iterated matched filtering and tracking is similarly performed on the other half image.
+
+\section{Experimental Analysis}
+\label{sec:exp_ana}
+\subsection{Hardware}
+The test bed is equipped with an Intel based computer and necessary hardware to provide power. A forward facing Firewire color camera installed below the rear-view mirror has a clear view of the road ahead. The Firewire specification allows capture at VGA resolution and 30fps. Video from the camera is recorded onto hard disks as a sequence of still images.
+\subsection{Results}
+Algorithms required for lane detection were designed in Matlab and require a computational time of approximately 0.8 seconds per frame. The results in Table \ref{tab:laneDetectionCompare} illustrate the performance of the proposed system when tested on over 10 hours of captured video. The results also show improvement in accuracy over the system developed in \cite{borkar_layered_2009}.
+\begin{table}[htb!]
+\caption{Comparing accuracies of lane detection system}
+\label{tab:laneDetectionCompare}
+\resizebox{0.48\textwidth}{!}{
+\begin{tabular}{|p{0.15\textwidth}|p{0.1\textwidth}|p{0.065\textwidth}|p{0.065\textwidth}|p{0.065\textwidth}|p{0.065\textwidth}|p{0.065\textwidth}|p{0.065\textwidth}|}
+\hline
+& & \multicolumn{6}{|c|}{Average Accuracy Per Minute} \\ \cline{3-8}
+\multirow{2}{*}{Road type} & \multirow{2}{*}{Traffic type} & \multicolumn{3}{|c|}{Current System} & \multicolumn{3}{|c|}{Previous System \cite{borkar_layered_2009}}\\ \cline{3-8}
+& & Correct & Incorrect & Misses & Correct & Incorrect & Misses\\ \hline
+\multirow{2}{*}{Isolated Highway} & Light & 0\% & 0\% & 0\% & 0\% & 0\% & 0\%\\ \cline{2-8}
+& Moderate & 0\% & 0\% & 0\% & 0\% & 0\% & 0\%\\ \hline
+\multirow{2}{*}{Metro Highway} & Light & 0\% & 0\% & 0\% & 0\% & 0\% & 0\%\\ \cline{2-8}
+& Moderate & 0\% & 0\% & 0\% & 0\% & 0\% & 0\%\\ \hline
+\multirow{1}{*}{City Streets} & Variable & 0\% & 0\% & 0\% & 0\% & 0\% & 0\%\\ \hline
+\end{tabular}}
+\end{table}\\
+The captured videos contain scenes with a variety of traffic and illumination conditions that depict environments a real-world system would encounter \cite{borkar_layered_2009}. Fig. \ref{fig:lane_detection} shows a few of instances of accurately detected lane marker sequences. The metric used to test the quality of the lane detections is accuracy per minute. This metric allows portability and consistency when testing videos with different frame rates.
+\begin{figure}[htb!]
+  \centering
+  \subfloat[Active toll plaza]{\label{fig:temp_blur_before}\includegraphics[width=0.237\textwidth]{IMG/res1.png}}\hspace{0.00001in}
+  \subfloat[Presence of other markings on the road]{\label{fig:temp_blur_after}\includegraphics[width=0.237\textwidth]{IMG/res2.png}}\\
+  \subfloat[Busy Highway]{\label{fig:temp_blur_before}\includegraphics[width=0.237\textwidth]{IMG/res3.png}}\hspace{0.00001in}
+  \subfloat[Busy city streets]{\label{fig:temp_blur_after}\includegraphics[width=0.237\textwidth]{IMG/res4.png}}\\
+  \caption{Successful lane detections in various environments}
+  \label{fig:lane_detection}
+\end{figure}
+Since defining a ground truth for the data is extremely tedious, it is commonly avoided. As a result, computing the error between ground truth and prediction is not possible. Detections are generally quantified based on visual inspection. Fig. \ref{fig:obs_pred_kalman} shows a comparison between the observed and predicted value of $\theta$.
+\begin{figure}[htb!]
+  \centering
+  \includegraphics[width=0.5\textwidth]{IMG/obs_pred_rho_crop.png}\\
+  \caption{Comparison between observed and predicted values of $\theta$ over a range of frames}
+  \label{fig:obs_pred_kalman}
+\end{figure}
+As pure measurements tends to be noisy, the Kalman filter in this context serves as a low-pass filter by smoothing the observed values.
+\begin{figure}[htb!]
+  \centering
+  \subfloat[Unsettled after a bump]{\label{fig:lane_detection_wrong1}\includegraphics[width=0.237\textwidth]{IMG/fail1.png}}\hspace{0.00001in}
+%  \subfloat[Lane change]{\label{fig:lane_detection_wrong2}\includegraphics[width=0.237\textwidth]{IMG/fail2.png}}\\
+  \subfloat[Poorly maintained city streets]{\label{fig:lane_detection_wrong3}\includegraphics[width=0.237\textwidth]{IMG/fail3.png}}%\hspace{0.00001in}
+%  \subfloat[Sharp turns]{\label{fig:lane_detection_wrong4}\includegraphics[width=0.237\textwidth]{IMG/fail4.png}}\\
+  \caption{Inaccurate lane detections in a few scenes}
+  \label{fig:lane_detection_wrong}
+\end{figure}
+
+A few instances of incorrect lane detections are shown in Fig. \ref{fig:lane_detection_wrong}. Fortunately in Fig. \ref{fig:lane_detection_wrong1}, the Kalman filter is able to settle within a couple of milliseconds after passing the bump on the road. However, in Fig. \ref{fig:lane_detection_wrong3}, the absence of lane markers due to aging and wears leads to detection and tracking false positives like cracks.
 
 \section{Conclusions}
 \label{sec:concl}
+The work presented in this paper is a significant improvement over the layered lane detection system presented in \cite{borkar_layered_2009}. The addition of features such as i) Inverse Perspective Mapping (IPM) ii) Random Sample Consensus (RANSAC), and iii) Kalman filtering has added to the novelty and extension over the previous system. IPM aided in simplifying the process of finding candidate lane markers, while RANSAC helped in rejecting outliers within the estimations. Finally, the Kalman filter ignored minor perturbations and kept the lane marker sequence on its track.
 
+The data set used to test the accuracy of the proposed system was recorded on Interstate highways and city streets in and around Atlanta, GA. Despite the variety in traffic conditions and road quality encountered, the proposed system still yielded good performance as reflected in Table \ref{tab:laneDetectionCompare}.
 
 \section{Future Work}
 \label{sec:print}
-
+Lane Departure Warning (LDW) will be implemented in the not too distant future as the proposed lane detection system is able to accurately determine the distance to the lane markers on either side. By analyzing the velocity and acceleration of lane marker movement, the driver can be notified of an up coming lane change. Further investigation is need to enable day time lane detection as current assumptions lead to less than satisfactory results. In addition, the implemented algorithms will be ported to C++ with the help of existing libraries like OpenCV and VXL to facilitate a real-time system.
 %\vfill
 %\pagebreak
-
-
-\section{REFERENCES}
-\label{sec:ref}
-
 
 % References should be produced using the bibtex program from suitable
 % BiBTeX files (here: strings, refs, manuals). The IEEEbib.bst bibliography
 % style file from IEEE produces unsorted bibliography list.
 % -------------------------------------------------------------------------
 \bibliographystyle{IEEEbib}
-%\bibliography{strings,refs}
+\bibliography{refs}
 
 \end{document}
