@@ -1,10 +1,41 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{assidiq_real_2008}
+{A.A.M.} Assidiq, {O.O.} Khalifa, R.~Islam, and S.~Khan,
+\newblock ``Real time lane detection for autonomous vehicles,''
+\newblock in {\em International Conference on Computer and Communication
+  Engineering}, 2008, pp. 82--88.
+
+\bibitem{wang_driver_2005}
+C.~C. Wang, S.~S. Huang, and L.~C. Fu,
+\newblock ``Driver assistance system for lane detection and vehicle recognition
+  with night vision,''
+\newblock in {\em 2005 {IEEE/RSJ} International Conference on Intelligent
+  Robots and Systems {(IROS} 2005)}, 2005, pp. 3530--3535.
+
+\bibitem{sun_hsi_2006}
+T.~Y. Sun, S.~J. Tsai, and V.~Chan,
+\newblock ``{HSI} color model based {Lane-Marking} detection,''
+\newblock in {\em {IEEE} Intelligent Transportation Systems Conference}, 2006,
+  pp. 1168--1172.
+
+\bibitem{chin_lane_2005}
+K.~Y. Chin and S.~F. Lin,
+\newblock ``Lane detection using color-based segmentation,''
+\newblock in {\em Proceedings of the {IEEE} Intelligent Vehicles Symposium},
+  2005, pp. 706--711.
 
 \bibitem{borkar_layered_2009}
 A.~Borkar, M.~H. Hayes, M.~T. Smith, and S.~Pankanti,
 \newblock ``A layered approach to robust lane detection at night,''
 \newblock in {\em 2009 {IEEE} Workshop on Computational Intelligence in
   Vehicles and Vehicular Systems}, 2009.
+
+\bibitem{wang_real-time_2006}
+H.~Wang and Q.~Chen,
+\newblock ``Real-time lane detection in various conditions and night cases,''
+\newblock in {\em Proceedings of the {IEEE} Intelligent Transportation Systems
+  Conference}, 2006, pp. 17--20.
 
 \bibitem{sehestedt_robust_2007}
 S.~Sehestedt, S.~Kodagoda, A.~Alempijevic, and G.~Dissanayake,
