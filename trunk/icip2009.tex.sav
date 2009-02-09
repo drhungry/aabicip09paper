@@ -12,12 +12,12 @@
 
 % Title.
 % ------
-\title{AUTHOR GUIDELINES FOR ICIP 2009 PROCEEDINGS MANUSCRIPTS}
+\title{ROBUST LANE DETECTION AND TRACKING WITH RANSAC AND KALMAN FILTER}
 %
 % Single address.
 % ---------------
-\name{Author(s) Name(s)\thanks{Thanks to XYZ agency for funding.}}
-\address{Author Affiliation(s)}
+\name{Amol Borkar, Monson H. Hayes, Mark T. Smith}
+\address{Address}
 %\name{\begin{tabular}[t]{c@{\extracolsep{8em}}c}
 %I. M. Anonymous  & M. Y. Coauthor\\
 % \\
@@ -25,7 +25,7 @@
 %        My Institute & Coauthor Institute\\
 %        City, STATE~~zipcode & City, STATE~~zipcode
 %\end{tabular}}
-\address{}
+%\address{}
 
 % For example:
 % ------------
@@ -45,7 +45,6 @@
 %	{School C-D\\
 %	Department C-D\\
 %	Address C-D}
-
 %
 \begin{document}
 %\ninept
@@ -66,7 +65,10 @@ Intro
 
 \section{Prior Research}
 \label{sec:prior}
-Vision based lane detection is a very heavily researched topic. Out of the numerous techniques have been developed over the years in an attempt to robustly detect lanes, the edge based approach is one of the most common []. In this approach, a Canny edge detector is commonly used to generate the binary edge map. This is followed by computing the classical Hough transform to determine the ideal position of the lane markers on the road. While this approach shows good results in general, it is easily skewed by shadows, cracks or adjacent vehicles. The application of color segmentation to extract lane markers from the road is another strategy []. Unfortunately, color segmentation is very sensitive to ambient light and requires additional processing to counter these effects.
+Numerous techniques for vision-based lane detection have been developed in an attempt to robustly detect lanes.
+In the extraction of features for lane detection, one of the most commonly used approaches it to apply an edge detector to the data \cite{assidiq_real_2008,wang_driver_2005}. With this approach, a Canny edge detector is typically used to generate a binary edge map. Using the binary edge map, the classical Hough transform is then used to extract a set of lines as candidates for the lane markers.  While this approach shows good results in general, the detected lanes are often skewed due to surface irregularities or navigational text markers on the road. The application of color segmentation to extract lane markers is another strategy \cite{sun_hsi_2006,chin_lane_2005}. Unfortunately, color segmentation is sensitive to ambient light and requires additional processing to counter these unpredictable effects. Advancing into image perspectives, majority of the procedures rely on performing feature extraction on the camera perspective image \cite{borkar_layered_2009,assidiq_real_2008,sun_hsi_2006,wang_real-time_2006}. Although dealing with camera perspective allows access to raw data values, defining of the required features can be rather complicated. The complication arises from dynamics in modeling the sought after features due to their change in shape and size on every row in the image. This type of inconsistency leads to the formulation of unique definitions on every scanline.
+
+Lane detection is a vital component of almost all vision based driver aids. Many of the systems discussed above perform well under a variety of assumptions. Some of the prominent assumptions being the presence of strong lane marker contrast and roads devoid of artifacts like cracks, arrows or similar markers. Unfortunately, these assumptions does hold in many high traffic urban streets and highways. No existing publicly cited literature documents all around performance of a lane detection system on all streets and highways around the world; hence, there is still scope for improvement as robust lane detection still remains unsolved.
 
 \section{Methodology}
 \label{sec:methodology}
@@ -77,8 +79,10 @@ The acquired Bayer array images are reconstructed into their RGB representation 
 Inverse perspective mapping (IPM) is an image transformation technique used to remove the perspective effect from an image. As seen in Fig. \ref{fig:ipm}, application of this transform changes the appearance of the image from a forward facing camera view to a birds eye view. \cite{sehestedt_robust_2007,shu_vision_2004,bertozzi_gold:parallel_1998}.
 \begin{figure}[htb]
   \centering
-  \includegraphics[width=0.45\textwidth]{IMG/ipm_fwd.png}
-  \caption{Inverse perspective mapping transforms an image into a birdseye view}
+    \subfloat[Camera perspective view]{\label{fig:temp_blur_before}\includegraphics[width=0.235\textwidth]{IMG/ipm1.png}}\hspace{0.00001in}
+      \subfloat[Birdseye view]{\label{fig:temp_blur_before}\includegraphics[width=0.235\textwidth]{IMG/ipm2.png}}\\
+    %\includegraphics[width=0.45\textwidth]{IMG/ipm_fwd.png}
+  \caption{Inverse perspective mapping transforms a camera perspective image into a birdseye view image}
   \label{fig:ipm}
 \end{figure}
 The benefit of this approach is the simplification of lane marker detection and classification as the initially converging lane marker sequences now appear parallel. In addition, the transformation enables a mapping between pixels in the image plane to their corresponding locations in the world with metric co-ordinates. Camera parameters such as height from the ground, inclination and horizontal/vertical viewing angles need to be determined ahead of time to guarantee an accurate transformation. The IPM transform is applied to the average image acquired after application of the enhancements above.
@@ -174,11 +178,11 @@ The captured videos contain scenes with a variety of traffic and illumination co
   \caption{Successful lane detections in various environments}
   \label{fig:lane_detection}
 \end{figure}
-Since defining a ground truth for the data is extremely tedious, it is commonly avoided. As a result, computing the error between ground truth and prediction is not possible. Detections are generally quantified based on visual inspection. Fig. \ref{fig:obs_pred_kalman} shows a comparison between the observed and predicted value of $\theta$.
+Since defining a ground truth for the data is extremely tedious, it is commonly avoided. As a result, computing the error between ground truth and prediction is not possible. Detections are generally quantified based on visual inspection. Fig. \ref{fig:obs_pred_kalman} shows a comparison between the observed and predicted value of $\rho$.
 \begin{figure}[htb!]
   \centering
-  \includegraphics[width=0.5\textwidth]{IMG/obs_pred_rho_crop.png}\\
-  \caption{Comparison between observed and predicted values of $\theta$ over a range of frames}
+  \includegraphics[width=0.4\textwidth]{IMG/obs_pred_rho_crop.png}\\
+  \caption{Comparison between observed and predicted values of $\rho$ over a range of frames}
   \label{fig:obs_pred_kalman}
 \end{figure}
 As pure measurements tends to be noisy, the Kalman filter in this context serves as a low-pass filter by smoothing the observed values.
