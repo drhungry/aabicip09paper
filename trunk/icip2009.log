@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592-1.40.3 (MiKTeX 2.6) (preloaded format=pdflatex 2008.11.6)  9 FEB 2009 14:47
+This is pdfTeX, Version 3.141592-1.40.3 (MiKTeX 2.6) (preloaded format=pdflatex 2008.11.6)  9 FEB 2009 16:29
 entering extended mode
 **icip2009.tex
 (icip2009.tex
@@ -264,16 +264,20 @@ Overfull \hbox (2.10136pt too wide) in paragraph at lines 63--65
 ion, Hough trans-form, Kalman
  []
 
-<IMG/ipm1.png, id=1, 481.8pt x 361.35pt>
+
+Underfull \vbox (badness 2435) has occurred while \output is active []
+
+ [1{psfonts.map}
+
+
+
+] <IMG/ipm1.png, id=9, 481.8pt x 361.35pt>
 File: IMG/ipm1.png Graphic file (type png)
  <use IMG/ipm1.png>
-<IMG/ipm2.png, id=2, 494.84875pt x 371.3875pt>
+<IMG/ipm2.png, id=10, 494.84875pt x 371.3875pt>
 File: IMG/ipm2.png Graphic file (type png)
- <use IMG/ipm2.png> [1{psfonts.map}
-
-
-
-] <IMG/cand_lane_points.png, id=11, 362.0727pt x 168.1482pt>
+ <use IMG/ipm2.png>
+<IMG/cand_lane_points.png, id=11, 362.0727pt x 168.1482pt>
 File: IMG/cand_lane_points.png Graphic file (type png)
 
 <use IMG/cand_lane_points.png>
@@ -283,42 +287,47 @@ File: IMG/cand_lane_points2.png Graphic file (type png)
 <use IMG/cand_lane_points2.png> [2 <IMG/ipm1.png (PNG copy)> <IMG/ipm2.png (PNG
  copy)> <IMG/cand_lane_points.png (PNG copy)> <IMG/cand_lane_points2.png (PNG c
 opy)>]
-Overfull \hbox (3.16852pt too wide) in paragraph at lines 203--203
+Overfull \hbox (3.16852pt too wide) in paragraph at lines 233--233
 []\OT1/ptm/m/n/10 Incorrect| 
  []
 
 
-Overfull \hbox (3.16852pt too wide) in paragraph at lines 203--203
+Overfull \hbox (3.16852pt too wide) in paragraph at lines 233--233
 []\OT1/ptm/m/n/10 Incorrect| 
  []
 
-<IMG/res1.png, id=21, 483.30562pt x 362.85562pt>
+<IMG/res1.png, id=17, 483.30562pt x 362.85562pt>
 File: IMG/res1.png Graphic file (type png)
  <use IMG/res1.png>
-<IMG/res2.png, id=22, 483.30562pt x 362.85562pt>
+<IMG/res2.png, id=18, 483.30562pt x 362.85562pt>
 File: IMG/res2.png Graphic file (type png)
  <use IMG/res2.png>
-<IMG/res3.png, id=23, 501.37312pt x 376.40625pt>
+<IMG/res3.png, id=19, 501.37312pt x 376.40625pt>
 File: IMG/res3.png Graphic file (type png)
  <use IMG/res3.png>
-<IMG/res4.png, id=24, 483.30562pt x 362.85562pt>
+<IMG/res4.png, id=20, 483.30562pt x 362.85562pt>
 File: IMG/res4.png Graphic file (type png)
  <use IMG/res4.png>
-<IMG/obs_pred_rho_crop.png, id=25, 716.1957pt x 419.166pt>
+<IMG/obs_pred_rho_crop.png, id=21, 716.1957pt x 419.166pt>
 File: IMG/obs_pred_rho_crop.png Graphic file (type png)
 
 <use IMG/obs_pred_rho_crop.png>
-<IMG/fail1.png, id=26, 787.94376pt x 591.20876pt>
+<IMG/fail1.png, id=22, 787.94376pt x 591.20876pt>
 File: IMG/fail1.png Graphic file (type png)
  <use IMG/fail1.png>
-<IMG/fail3.png, id=27, 501.37312pt x 376.40625pt>
+<IMG/fail3.png, id=23, 501.37312pt x 376.40625pt>
 File: IMG/fail3.png Graphic file (type png)
  <use IMG/fail3.png> [3 <IMG/res1.png (PNG copy)> <IMG/res2.png (PNG copy)> <IM
-G/res3.png (PNG copy)> <IMG/res4.png (PNG copy)> <IMG/obs_pred_rho_crop.png> <I
-MG/fail1.png> <IMG/fail3.png (PNG copy)>] (icip2009.bbl
+G/res3.png (PNG copy)> <IMG/res4.png (PNG copy)>]
+Underfull \vbox (badness 7064) has occurred while \output is active []
+
+
+(icip2009.bbl
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1.
-) [4] (icip2009.aux)
+ [4 <IMG/obs_pred_rho_crop.png> <IMG/fail1.png> <IMG/fail3.png (PNG copy)>]) [5
+
+] (icip2009.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -326,7 +335,7 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  3026 strings out of 95305
  40360 string characters out of 1185195
- 107550 words of memory out of 1100498
+ 110622 words of memory out of 1100498
  6071 multiletter control sequences out of 60000
  24646 words of font info for 51 fonts, out of 1000000 for 2000
  14 hyphenation exceptions out of 8191
@@ -340,9 +349,9 @@ am Files/MiKTeX 2.6/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2
 .6/fonts/type1/urw/times/utmbi8a.pfb><C:/Program Files/MiKTeX 2.6/fonts/type1/u
 rw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.6/fonts/type1/urw/times/utmri8a.
 pfb>
-Output written on icip2009.pdf (4 pages, 3360439 bytes).
+Output written on icip2009.pdf (5 pages, 3362382 bytes).
 PDF statistics:
- 69 PDF objects out of 300000 (max. 8388607)
+ 72 PDF objects out of 300000 (max. 8388607)
  0 named destinations out of 300000 (max. 131072)
  56 words of extra memory for PDF output out of 65536 (max. 10000000)
 

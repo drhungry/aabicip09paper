@@ -61,12 +61,29 @@ to help smooth the output of the lane tracker.
 \end{abstract}
 %
 \begin{keywords}
-One, two, three, four, five
+Lane detection, Hough transform, Kalman filter.
 \end{keywords}
 %
 \section{Introduction}
 \label{sec:intro}
-Intro
+Driver safety on the highways has been an are of interest for many years.
+With the development of fast, cheap, low-power, and sophisticated electronics,
+the ability to design and build an automobile with sensors, electronics, and
+warning systems are beginning to appear on the market.
+
+One of the interesting areas of research and development is collision avoidance.
+An important component for effective collision avoidance is lane detection.
+The ability to detect sudden or unexpected lane changes when there
+is traffic in the lane a driver is moving into could help a driver to avoid
+collisions.
+Effective monitoring of the position of a car within a lane could be used to 
+help avert a collision due to driver distractions, fatigue, or driving under the influence of a controlled substance.
+There are obvious difficulties and challenges in designing collision avoidance
+systems, and some of the challenges fall outside the realm of engineering and
+involve complicated issues related to law and liability.
+
+
+
 
 \section{Prior Research}
 \label{sec:prior}
