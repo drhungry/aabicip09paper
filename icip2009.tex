@@ -52,11 +52,16 @@
 \maketitle
 %
 \begin{abstract}
-Abstract goes here
+In a previous paper, a simple approach to lane detection using the Hough 
+transform and iterated matched filters was described \cite{borkar_layered_2009}.
+This paper extends this work by incorporating an inverse perspective mapping 
+to create a birds-eye view of the road, applying random sample consensus to help 
+eliminate outliers due to noise and artifacts in the road, and a Kalman filter
+to help smooth the output of the lane tracker.
 \end{abstract}
 %
 \begin{keywords}
-One, two, three, four, five
+Lane detection, Hough transform, Kalman filter.
 \end{keywords}
 %
 \section{Introduction}
@@ -131,7 +136,7 @@ The state vector $x(n)$ and observation vector $y(n)$ are defined as
         \end{array} \right]^T
 \label{eq:state_measure_vectors}
 \end{equation}\\
-where $\rho$ and $\theta$ define the line orientation and $\dot{\rho}$ and $\dot{\theta}$ are the derivatives of $\rho$ and $\theta$ that are found by forming the difference in $\rho $ and $\theta $ between the current and previous frame. 
+where $\rho$ and $\theta$ define the line orientation and $\dot{\rho}$ and $\dot{\theta}$ are the derivatives of $\rho$ and $\theta$ that are found by forming the difference in $\rho $ and $\theta $ between the current and previous frame.
 {\bf Do not understand the following sentence} Piece-wise linearity is assumed between the frames allowing use of the Kalman filter \cite{hayes_statistical_1996,brookner_tracking_1998}.
 The state transition matrix $A$ is
 %and observation model $C$ are defined as
@@ -178,8 +183,8 @@ Finally, after extraction from $\hat{x}(n|n)$, $\rho$ and $\theta$ are transform
 The hardware used to test and evaluate this new lane detection system is built around an Intel based computer.  A forward facing Firewire color camera is installed below the rear-view mirror so that it has a clear view of the road ahead. The Firewire allows video to be captured at VGA resolution and 30fps.
 Video from the camera is recorded onto hard disks.
 \subsection{Results}
-The lane detection algorithm was implemented in Matlab and requires 
-approximately 0.8 seconds to process each frame. 
+The lane detection algorithm was implemented in Matlab and requires
+approximately 0.8 seconds to process each frame.
 The results in Table \ref{tab:laneDetectionCompare} illustrate the performance of the proposed system when applied to over 10 hours of captured video. The results also show improvement in accuracy over the system developed in \cite{borkar_layered_2009}. {\bf you may get hammered by not comparing this to other systems and approaches!  I would nail you for this!}
 \begin{table}[htb!]
 \caption{Comparing accuracies of lane detection system}
@@ -208,8 +213,8 @@ The metric used to test the quality of the lane detections is accuracy per minut
   \caption{Successful lane detections in various environments}
   \label{fig:lane_detection}
 \end{figure}
-Since defining a ground truth for the data is extremely tedious, it is commonly avoided. 
-%As a result, computing the error between ground truth and prediction is not possible. 
+Since defining a ground truth for the data is extremely tedious, it is commonly avoided.
+%As a result, computing the error between ground truth and prediction is not possible.
 Detections are generally quantified based on visual inspection. Fig. \ref{fig:obs_pred_kalman} shows a comparison between the observed and predicted value of $\rho$.
 \begin{figure}[htb!]
   \centering

@@ -52,7 +52,12 @@
 \maketitle
 %
 \begin{abstract}
-Abstract goes here
+In a previous paper, a simple approach to lane detection using the Hough 
+transform and iterated matched filters was described \cite{borkar_layered_2009}.
+This paper extends this work by incorporating an inverse perspective mapping 
+to create a birds-eye view of the road, applying random sample consensus to help 
+eliminate outliers due to noise and artifacts in the road, and a Kalman filter
+to help smooth the output of the lane tracker.
 \end{abstract}
 %
 \begin{keywords}
@@ -131,7 +136,7 @@ The state vector $x(n)$ and observation vector $y(n)$ are defined as
         \end{array} \right]^T
 \label{eq:state_measure_vectors}
 \end{equation}\\
-where $\rho$ and $\theta$ define the line orientation and $\dot{\rho}$ and $\dot{\theta}$ are the derivatives of $\rho$ and $\theta$ that are found by forming the difference in $\rho $ and $\theta $ between the current and previous frame. 
+where $\rho$ and $\theta$ define the line orientation and $\dot{\rho}$ and $\dot{\theta}$ are the derivatives of $\rho$ and $\theta$ that are found by forming the difference in $\rho $ and $\theta $ between the current and previous frame.
 {\bf Do not understand the following sentence} Piece-wise linearity is assumed between the frames allowing use of the Kalman filter \cite{hayes_statistical_1996,brookner_tracking_1998}.
 The state transition matrix $A$ is
 %and observation model $C$ are defined as
@@ -175,13 +180,12 @@ Finally, after extraction from $\hat{x}(n|n)$, $\rho$ and $\theta$ are transform
 \section{Experimental Analysis}
 \label{sec:exp_ana}
 \subsection{Hardware}
-The hardware used for lane detection is built around an Intel based computer and
-the hardware necessary to provide power. A forward facing Firewire color camera installed below the rear-view mirror so that it has a clear view of the road ahead. The Firewire allows video to be captured at VGA resolution and 30fps. 
+The hardware used to test and evaluate this new lane detection system is built around an Intel based computer.  A forward facing Firewire color camera is installed below the rear-view mirror so that it has a clear view of the road ahead. The Firewire allows video to be captured at VGA resolution and 30fps.
 Video from the camera is recorded onto hard disks.
 \subsection{Results}
-The lane detection algorithm was implemented in Matlab and requires 
-approximately 0.8 seconds per frame. 
-The results in Table \ref{tab:laneDetectionCompare} illustrate the performance of the proposed system when applied to over 10 hours of captured video. The results also show improvement in accuracy over the system developed in \cite{borkar_layered_2009}.
+The lane detection algorithm was implemented in Matlab and requires
+approximately 0.8 seconds to process each frame.
+The results in Table \ref{tab:laneDetectionCompare} illustrate the performance of the proposed system when applied to over 10 hours of captured video. The results also show improvement in accuracy over the system developed in \cite{borkar_layered_2009}. {\bf you may get hammered by not comparing this to other systems and approaches!  I would nail you for this!}
 \begin{table}[htb!]
 \caption{Comparing accuracies of lane detection system}
 \label{tab:laneDetectionCompare}
@@ -198,8 +202,8 @@ The results in Table \ref{tab:laneDetectionCompare} illustrate the performance o
 \multirow{1}{*}{City Streets} & Variable & 0\% & 0\% & 0\% & 0\% & 0\% & 0\%\\ \hline
 \end{tabular}}
 \end{table}\\
-The captured videos contain scenes with a variety of traffic and illumination conditions that depict environments a real-world system would encounter \cite{borkar_layered_2009}. Fig. \ref{fig:lane_detection} shows a few of instances of detected lane markers.
-The metric used to test the quality of the lane detections is accuracy per minute {\bf ???}. This metric allows portability and consistency when testing videos with different frame rates.
+The captured videos contain scenes with a variety of traffic and illumination conditions that depict environments a driver might encounter \cite{borkar_layered_2009}. Fig. \ref{fig:lane_detection} shows a few of instances of detected lane markers.
+The metric used to test the quality of the lane detections is accuracy per minute {(\bf what does this mean ???)}. This metric allows portability and consistency when testing videos with different frame rates.
 \begin{figure}[htb!]
   \centering
   \subfloat[Active toll plaza]{\label{fig:temp_blur_before}\includegraphics[width=0.237\textwidth]{IMG/res1.png}}\hspace{0.00001in}
@@ -209,14 +213,16 @@ The metric used to test the quality of the lane detections is accuracy per minut
   \caption{Successful lane detections in various environments}
   \label{fig:lane_detection}
 \end{figure}
-Since defining a ground truth for the data is extremely tedious, it is commonly avoided. As a result, computing the error between ground truth and prediction is not possible. Detections are generally quantified based on visual inspection. Fig. \ref{fig:obs_pred_kalman} shows a comparison between the observed and predicted value of $\rho$.
+Since defining a ground truth for the data is extremely tedious, it is commonly avoided.
+%As a result, computing the error between ground truth and prediction is not possible.
+Detections are generally quantified based on visual inspection. Fig. \ref{fig:obs_pred_kalman} shows a comparison between the observed and predicted value of $\rho$.
 \begin{figure}[htb!]
   \centering
   \includegraphics[width=0.4\textwidth]{IMG/obs_pred_rho_crop.png}\\
   \caption{Comparison between observed and predicted values of $\rho$ over a range of frames}
   \label{fig:obs_pred_kalman}
 \end{figure}
-As pure measurements tends to be noisy, the Kalman filter in this context serves as a low-pass filter by smoothing the observed values.
+As pure measurements tends to be noisy, the Kalman filter in this context serves as a low-pass filter by smoothing the observed values. ({\bf Sure?})
 \begin{figure}[htb!]
   \centering
   \subfloat[Unsettled after a bump]{\label{fig:lane_detection_wrong1}\includegraphics[width=0.237\textwidth]{IMG/fail1.png}}\hspace{0.00001in}
