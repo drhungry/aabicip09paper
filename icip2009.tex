@@ -66,7 +66,37 @@ Lane detection, Hough transform, Kalman filter.
 %
 \section{Introduction}
 \label{sec:intro}
-Intro
+Driver safety on the highways has been an are of interest for many years.
+With the development of fast, cheap, low-power, and sophisticated electronics,
+the ability to design and build an automobile with sensors, electronics, and
+warning systems are beginning to appear on the market.
+
+One of the interesting areas of research and development is collision avoidance.
+An important component for effective collision avoidance is lane detection.
+The ability to detect sudden or unexpected lane changes when there
+is traffic in the lane a driver is moving into could help a driver to avoid
+collisions.
+Effective monitoring of the position of a car within a lane could be used to 
+help avert a collision due to driver distractions, fatigue, or driving under the influence of a controlled substance.
+There are obvious difficulties and challenges in designing collision avoidance
+systems, and some of the challenges fall outside the realm of engineering and
+involve complicated issues related to law and liability.
+
+In this paper, we address some of the image processing challenges is designing a 
+lane detection system.  It is organized as follows.  
+After a brief survey of some previous research, we then describe the various
+components of the system.  These include image enhancement using temporal blurring,
+inverse projective mapping to create a birds-eye view of the road, a Hough transform
+for detecting candidate lane markers, a random sample consensus algorithm to 
+help deal with outliers in the image, and tracking of the lane parameters using a Kalman filter. 
+Then, we briefly describe the hardware that was used to collect data, and
+then show the performance of the lane tracking system.
+It is shown that this system exhibits considerable improvement in
+performance compared to a system using only the Hough transform and and matched filtering that was previously described.
+
+
+
+
 
 \section{Prior Research}
 \label{sec:prior}
