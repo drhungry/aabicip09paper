@@ -16,8 +16,8 @@
 %
 % Single address.
 % ---------------
-\name{Amol Borkar, Monson H. Hayes, Mark T. Smith}
-\address{Address}
+%\name{Amol Borkar, Monson H. Hayes, Mark T. Smith}
+%\address{Address}
 %\name{\begin{tabular}[t]{c@{\extracolsep{8em}}c}
 %I. M. Anonymous  & M. Y. Coauthor\\
 % \\
@@ -35,16 +35,17 @@
 %
 % Two addresses (uncomment and modify for two-address case).
 % ----------------------------------------------------------
-%\twoauthors
-%  {Amol Borkar, B. Author-two\sthanks{Thanks to XYZ agency for funding.}}
-%	{School A-B\\
-%	Department A-B\\
-%	Address A-B}
-%  {C. Author-three, D. Author-four\sthanks{The fourth author performed the work
-%	while at ...}}
-%	{School C-D\\
-%	Department C-D\\
-%	Address C-D}
+\twoauthors
+  {Amol A. Borkar, Monson H. Hayes III}
+	{Center for Signal and Image Processing (CSIP)\\
+	Georgia Institute of Technology\\
+	Atlanta, GA\\
+    $\{$amol,mhh3$\}$@gatech.edu}
+  {Mark T. Smith}
+	{Institut f\"{o}r Till\"{a}mpad Informationsteknik\\
+    Kungliga Tekniska H\"{o}gskolan\\
+	Stockholm, Sweden\\
+    msmith@kth.se}
 %
 \begin{document}
 %\ninept
@@ -52,10 +53,10 @@
 \maketitle
 %
 \begin{abstract}
-In a previous paper, a simple approach to lane detection using the Hough 
+In a previous paper, a simple approach to lane detection using the Hough
 transform and iterated matched filters was described \cite{borkar_layered_2009}.
-This paper extends this work by incorporating an inverse perspective mapping 
-to create a birds-eye view of the road, applying random sample consensus to help 
+This paper extends this work by incorporating an inverse perspective mapping
+to create a birds-eye view of the road, applying random sample consensus to help
 eliminate outliers due to noise and artifacts in the road, and a Kalman filter
 to help smooth the output of the lane tracker.
 \end{abstract}
@@ -76,11 +77,24 @@ An important component for effective collision avoidance is lane detection.
 The ability to detect sudden or unexpected lane changes when there
 is traffic in the lane a driver is moving into could help a driver to avoid
 collisions.
-Effective monitoring of the position of a car within a lane could be used to 
+Effective monitoring of the position of a car within a lane could be used to
 help avert a collision due to driver distractions, fatigue, or driving under the influence of a controlled substance.
 There are obvious difficulties and challenges in designing collision avoidance
 systems, and some of the challenges fall outside the realm of engineering and
 involve complicated issues related to law and liability.
+
+In this paper, we address some of the image processing challenges is designing a
+lane detection system.  It is organized as follows.
+After a brief survey of some previous research, we then describe the various
+components of the system.  These include image enhancement using temporal blurring,
+inverse projective mapping to create a birds-eye view of the road, a Hough transform
+for detecting candidate lane markers, a random sample consensus algorithm to
+help deal with outliers in the image, and tracking of the lane parameters using a Kalman filter.
+Then, we briefly describe the hardware that was used to collect data, and
+then show the performance of the lane tracking system.
+It is shown that this system exhibits considerable improvement in
+performance compared to a system using only the Hough transform and and matched filtering that was previously described.
+
 
 
 
@@ -93,41 +107,42 @@ In the extraction of features for lane detection, one of the most commonly used 
 The majority of the approaches used for lane detection operate directly on the images that are captured by the camera without any geometrical correction or change in camera perspective \cite{borkar_layered_2009,assidiq_real_2008,sun_hsi_2006,wang_real-time_2006}.
 Although dealing with images from the camera perspective allows access to raw data values, defining the properties of the features of interest may be complicated. For example, a forward-looking camera will capture images that have lane markers that are not parallel and have line widths that vary as a function of the distance from the camera.  These variations often necessitate processing each row of a captured image in a different manner.
 
-Many of the systems described above perform well under certain driving conditions and often require that a certain set assumptions are valid.  Some of these assumptions include the  presence of strong lane marker contrast and roads devoid of artifacts such as cracks, arrows, or similar markers. Unfortunately, these assumptions do not hold in many high traffic urban streets and highways. No existing publicly cited literature documents all around performance of a lane detection system on all streets and highways around the world; hence, there is still scope for improvement as robust lane detection still remains unsolved. {\bf (See Mark Smiths's comment and make the appropriate corrects)}
+Many of the systems described above perform well under certain driving conditions and often require that a certain set assumptions are valid.  Some of these assumptions include the  presence of strong lane marker contrast and roads devoid of artifacts such as cracks, arrows, or similar markers. Unfortunately, these assumptions do not hold in many high traffic urban streets and highways. 
+
+This paper describes the combination of several image enhancement and filtering methods that yield substantially improved results.
 
 \section{Methodology}
 \label{sec:methodology}
 This paper extends the layered lane detection approach in \cite{borkar_layered_2009} by (1) using an inverse perspective mapping, (2) applying a random sample consensus to help eliminate outliers, and (3) using a Kalman filter for prediction and smoothing.
 In the following sections, the various components of our lane detection system are described.
 \subsection{Image Enhancement}
-The acquired Bayer array images are reconstructed into their RGB representation {\bf Isn't this done automatically by the camera?} and then converted to grayscale. The grayscale images are then temporal blurred by averaging N {\bf (how many?)} successive frames.  This smoothing helps connect dashed lane markers to form a near continuous line \cite{borkar_layered_2009}.
+The captured color images undergo a grayscale transformation and temporal blurring by averaging $N=3$ successive frames.  This smoothing helps connect dashed lane markers to form a near continuous line \cite{borkar_layered_2009}.
 \subsection{Inverse Perspective Mapping}
 The next step is to perform an inverse perspective mapping (IPM) on the images.  This transformation is used to change the captured images from a camera perspective to a birds eye view as illustrated in Fig. \ref{fig:ipm}.
 \cite{sehestedt_robust_2007,shu_vision_2004,bertozzi_gold:parallel_1998}.
 \begin{figure}[htb]
   \centering
-    \subfloat[Camera perspective view]{\label{fig:temp_blur_before}\includegraphics[width=0.235\textwidth]{IMG/ipm1.png}}\hspace{0.00001in}
-      \subfloat[Birdseye view]{\label{fig:temp_blur_before}\includegraphics[width=0.235\textwidth]{IMG/ipm2.png}}\\
+    \subfloat[Camera perspective view]{\label{fig:cam_pers}\includegraphics[width=0.235\textwidth]{IMG/ipm11.png}}\hspace{0.00001in}
+      \subfloat[Birdseye view]{\label{fig:ipm_feet}\includegraphics[width=0.235\textwidth]{IMG/ipm22.png}}\\
     %\includegraphics[width=0.45\textwidth]{IMG/ipm_fwd.png}
-  \caption{Inverse perspective mapping transforms a camera perspective image into a birdseye view image}
+  \caption{Inverse perspective mapping transforms a camera perspective image into a birdseye view image.}
   \label{fig:ipm}
 \end{figure}
-With this transformation, lane detection now becomes a problem of detecting two parallel lines that are generally separated by a given, fixed distance.
+With this transformation, lane detection now becomes a problem of detecting a pair of parallel lines that are generally separated by a given, fixed distance.
 %The benefit of this approach is the simplification of lane marker detection and %classification as the initially converging lane marker sequences now appear parallel.
-In addition, this transformation enables a mapping between pixels in the image plane to their corresponding locations in the world with metric {\bf What are metric coordinates? Is this important?} co-ordinates. Camera parameters such as height from the ground, inclination and horizontal/vertical viewing angles need to be determined ahead of time to ensure an accurate transformation.
+In addition, this transformation enables a mapping between pixels in the image plane to world co-ordinates (feet) as shown in Fig. \ref{fig:ipm_feet}. The camera's intrinsic and extrinsic parameters are necessary to ensure an accurate transformation.
 \subsection{Lane Candidate Location Detection}
-Next, an adaptive threshold is applied to each IPM image to generate a binary image \cite{borkar_layered_2009}.  Each binary image is then split into two two halves, each one presumably containing one lane marker.
-A low resolution Hough transform is then performed on the binary images and a set of X {\bf ???} highest scoring lines are found for each half image \cite{borkar_layered_2009}. Each line is then sampled along its length at a specified distance as indicated by the red ``+" in each line in Fig. \ref{fig:sampling_points}.
+Next, an adaptive threshold is applied to the IPM image to generate a binary image \cite{borkar_layered_2009}. Each binary image is then split into two two halves, each one presumably containing one lane marker.
+A low resolution Hough transform is then computed on the binary images and a set of $X=10$ highest scoring lines are found for each half image \cite{borkar_layered_2009}. Each line is then sampled along its length at a specified distance as indicated by the red ``+" indicator in Fig. \ref{fig:sampling_points}.
 %This is further illustrated in Fig. \ref{fig:sampling_points}, where the red lines symbolize the lines detected by computing the Hough transform, and, the yellow lines symbolize the discrete sampling locations.
 %The corresponding location of each of these points in the IPM average image is recovered.
 \begin{figure}[htb]
   \centering
   \includegraphics[width=0.45\textwidth]{IMG/cand_lane_points.png}
-  \caption{Green lines indicate the Hough transforms' X highest scoring lines, and the
-    +'s show some of the locations where the lines are to be sampled.}
+  \caption{The green line represents one of the high scoring lines, and the + indicators show the locations where this line is to be sampled.}
   \label{fig:sampling_points}
 \end{figure}
-To find the approximate center of each line, a one-dimensional matched filter is applied at each sample point along each of the X lines.
+To find the approximate center of each line, a one-dimensional matched filter is applied at each sample point along each of the $X$ lines.
 As described in \cite{borkar_layered_2009}, the matched filter is a Gaussian with a variance that is a function of the line width.
 Since the birds eye view created with the IPM produces lines of approximately constant width, a fixed variance Gaussian kernel may be used for the matched filter.
 %This was not the case in \cite{borkar_layered_2009} where a variety of variances had to be used to create the kernel on different scanlines. Matched filtering is iteratively performed on the remaining X-1 lines.
@@ -135,15 +150,15 @@ Since the birds eye view created with the IPM produces lines of approximately co
 After the matched filtering, the pixel with the largest correlation coefficient at each sample point is selected as best estimate of the center of the lane marker as shown in Fig. \ref{fig:cand_pts}.
 \begin{figure}[htb]
   \centering
-  \includegraphics[width=0.45\textwidth]{IMG/cand_lane_points2.png}
-  \caption{The best estimates for lane marker candidates in each half image}
+  \includegraphics[width=0.45\textwidth]{IMG/rho_theta.png}
+  \caption{Line fitted through one set of candidate points and parameterized with $\rho$ and $\theta$.}
   \label{fig:cand_pts}
 \end{figure}
 \subsection{Outlier Elimination and Data Modeling}
-Once a candidate lane marker position is identified at each sample point for each candidate line, Random Sample Consensus (RANSAC) is applied to the data points. The generic RANSAC algorithm robustly fits a model through the most probable data set or inliers while rejecting outliers \cite{hartley_multiple_2004,fischler_random_1981}. Linear Least Squares Estimation (LSE) is then used to fit to a line on the inliers.
-The orientation of line is specified by $\rho$ (vertical distance to the line from the origin, which is the top left corner pixel) and $\theta$ (the angle of the line, which generally is close to zero degrees).
+Once a candidate lane marker position is identified at each sample point for each candidate line, Random Sample Consensus (RANSAC) is applied to the data points. The generic RANSAC algorithm robustly fits a model through the most probable data set or inliers while rejecting outliers \cite{hartley_multiple_2004,fischler_random_1981}. Linear Least Squares Estimation (LSE) is then used to fit to a line on the inliers. Fig. \ref{fig:cand_pts} illustrates the parametrization of the fitted line in terms of $\rho$ and $\theta$. $\rho$ is the perpendicular vector from the origin (top left corner pixel) to the line and $\theta$ is the angle of this vector with respect to the horizontal axis (the angle of the line, which generally is close to $90^\circ$).
+%The orientation of line is specified by $\rho$ (vertical distance to the line from the origin, which is the top left corner pixel) and $\theta$ (the angle of the line, which generally is close to zero degrees).
 %For data fitting, a line was chosen over a parabolic fit since the latter is more sensitive to minor perturbations within the inliers, this can result sometimes in desirably shaped curves.\\
-\subsection{Tracking}
+\subsection{Tracking (will be resolved on 2/11)}
 The parameters of each line is predicted using a Kalman filter.
 The state vector $x(n)$ and observation vector $y(n)$ are defined as
 \begin{equation}
@@ -202,21 +217,21 @@ Video from the camera is recorded onto hard disks.
 \subsection{Results}
 The lane detection algorithm was implemented in Matlab and requires
 approximately 0.8 seconds to process each frame.
-The results in Table \ref{tab:laneDetectionCompare} illustrate the performance of the proposed system when applied to over 10 hours of captured video. The results also show improvement in accuracy over the system developed in \cite{borkar_layered_2009}. {\bf you may get hammered by not comparing this to other systems and approaches!  I would nail you for this!}
+The results in Table \ref{tab:laneDetectionCompare} illustrate the performance of the proposed system when applied to over 10 hours of captured video. The results also show improvement in accuracy over the system developed in \cite{borkar_layered_2009}. The lack of accessible turnkey programs makes comparing results to 3^{rd} party lane detection systems impossible.
 \begin{table}[htb!]
-\caption{Comparing accuracies of lane detection system}
+\caption{Accuracy of the lane detection system}
 \label{tab:laneDetectionCompare}
 \resizebox{0.48\textwidth}{!}{
 \begin{tabular}{|p{0.15\textwidth}|p{0.1\textwidth}|p{0.065\textwidth}|p{0.065\textwidth}|p{0.065\textwidth}|p{0.065\textwidth}|p{0.065\textwidth}|p{0.065\textwidth}|}
 \hline
-& & \multicolumn{6}{|c|}{Average Accuracy Per Minute} \\ \cline{3-8}
+& & \multicolumn{6}{|c|}{Average Detection Rate Per Minute} \\ \cline{3-8}
 \multirow{2}{*}{Road type} & \multirow{2}{*}{Traffic type} & \multicolumn{3}{|c|}{Current System} & \multicolumn{3}{|c|}{Previous System \cite{borkar_layered_2009}}\\ \cline{3-8}
 & & Correct & Incorrect & Misses & Correct & Incorrect & Misses\\ \hline
-\multirow{2}{*}{Isolated Highway} & Light & 0\% & 0\% & 0\% & 0\% & 0\% & 0\%\\ \cline{2-8}
-& Moderate & 0\% & 0\% & 0\% & 0\% & 0\% & 0\%\\ \hline
-\multirow{2}{*}{Metro Highway} & Light & 0\% & 0\% & 0\% & 0\% & 0\% & 0\%\\ \cline{2-8}
-& Moderate & 0\% & 0\% & 0\% & 0\% & 0\% & 0\%\\ \hline
-\multirow{1}{*}{City Streets} & Variable & 0\% & 0\% & 0\% & 0\% & 0\% & 0\%\\ \hline
+\multirow{2}{*}{Isolated Highway} & Light & 99.08\% & 0.99\% & 0\% & 89.69\% & 5.31\% & 5.19\%\\ \cline{2-8}
+& Moderate & 98.34\% & 1.65\% & 0\% & 91.47\% & 6.65\% & 1.87\%\\ \hline
+\multirow{2}{*}{Metro Highway} & Light & 98.37\% & 1.65\% & 0\% & 83.53\% & 8.89\% & 8.14\%\\ \cline{2-8}
+& Moderate & 96.34\% & 3.65\% & 0\% & 84.97\% & 10.33\% & 4.68\%\\ \hline
+\multirow{1}{*}{City Streets} & Variable & 86.39\% & 12.71\% & 0.78\% & 76.55\% & 11.94\% & 11.95\%\\ \hline
 \end{tabular}}
 \end{table}\\
 The captured videos contain scenes with a variety of traffic and illumination conditions that depict environments a driver might encounter \cite{borkar_layered_2009}. Fig. \ref{fig:lane_detection} shows a few of instances of detected lane markers.
@@ -239,7 +254,7 @@ Detections are generally quantified based on visual inspection. Fig. \ref{fig:ob
   \caption{Comparison between observed and predicted values of $\rho$ over a range of frames}
   \label{fig:obs_pred_kalman}
 \end{figure}
-As pure measurements tends to be noisy, the Kalman filter in this context serves as a low-pass filter by smoothing the observed values. ({\bf Sure?})
+As pure measurements tend to be noisy, the Kalman filter in this context serves as a low-pass filter by smoothing the observed values. ({\bf Sure?})
 \begin{figure}[htb!]
   \centering
   \subfloat[Unsettled after a bump]{\label{fig:lane_detection_wrong1}\includegraphics[width=0.237\textwidth]{IMG/fail1.png}}\hspace{0.00001in}
@@ -250,17 +265,16 @@ As pure measurements tends to be noisy, the Kalman filter in this context serves
   \label{fig:lane_detection_wrong}
 \end{figure}
 
-A few instances of incorrect lane detections are shown in Fig. \ref{fig:lane_detection_wrong}. Fortunately in Fig. \ref{fig:lane_detection_wrong1}, the Kalman filter is able to settle within a couple of milliseconds after passing the bump on the road. However, in Fig. \ref{fig:lane_detection_wrong3}, the absence of lane markers due to aging and wears leads to detection and tracking false positives like cracks.
-
+A few instances of incorrect lane detections are shown in Fig. \ref{fig:lane_detection_wrong}. Fortunately in Fig. \ref{fig:lane_detection_wrong1}, the Kalman filter is able to settle within a couple of milliseconds after passing the bump on the road. However, in Fig. \ref{fig:lane_detection_wrong3}, the absence of lane markers due to aging and wears leads to detection and tracking false positives such as cracks.
 \section{Conclusions}
 \label{sec:concl}
-The work presented in this paper is a significant improvement over the layered lane detection system presented in \cite{borkar_layered_2009}. The addition of features such as i) Inverse Perspective Mapping (IPM) ii) Random Sample Consensus (RANSAC), and iii) Kalman filtering has added to the novelty and extension over the previous system. IPM aided in simplifying the process of finding candidate lane markers, while RANSAC helped in rejecting outliers within the estimations. Finally, the Kalman filter ignored minor perturbations and kept the lane marker sequence on its track.
+The work presented in this paper is a significant improvement over the layered lane detection system presented in \cite{borkar_layered_2009}. The addition of features such as i) Inverse Perspective Mapping (IPM) ii) Random Sample Consensus (RANSAC), and iii) Kalman filtering has added to the novelty and extension over the previous system. IPM aids in simplifying the process of finding candidate lane markers, while RANSAC helps in rejecting outliers within the estimations. Finally, the Kalman filter ignores minor perturbations and keeps the lane marker sequence on its track.
 
 The data set used to test the accuracy of the proposed system was recorded on Interstate highways and city streets in and around Atlanta, GA. Despite the variety in traffic conditions and road quality encountered, the proposed system still yielded good performance as reflected in Table \ref{tab:laneDetectionCompare}.
 
 \section{Future Work}
 \label{sec:print}
-Lane Departure Warning (LDW) will be implemented in the not too distant future as the proposed lane detection system is able to accurately determine the distance to the lane markers on either side. By analyzing the velocity and acceleration of lane marker movement, the driver can be notified of an up coming lane change. Further investigation is need to enable day time lane detection as current assumptions lead to less than satisfactory results. In addition, the implemented algorithms will be ported to C++ with the help of existing libraries like OpenCV and VXL to facilitate a real-time system.
+Lane Departure Warning (LDW) will be implemented in the future. It will leverage from the lane detection system's ability to accurately determine the distance to the lane markers on either side. By analyzing the velocity and acceleration of lane marker movement, the driver can be notified of an up coming lane change. Further investigation is needed to enable successful day time lane detection. In addition, the implemented algorithms will be ported to C++ with the help of existing libraries like OpenCV and VXL to facilitate a real-time system.
 %\vfill
 %\pagebreak
 

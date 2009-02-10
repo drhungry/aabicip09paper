@@ -1,5 +1,11 @@
 \begin{thebibliography}{10}
 
+\bibitem{borkar_layered_2009}
+A.~Borkar, M.~H. Hayes, M.~T. Smith, and S.~Pankanti,
+\newblock ``A layered approach to robust lane detection at night,''
+\newblock in {\em 2009 {IEEE} Workshop on Computational Intelligence in
+  Vehicles and Vehicular Systems}, 2009.
+
 \bibitem{assidiq_real_2008}
 {A.A.M.} Assidiq, {O.O.} Khalifa, R.~Islam, and S.~Khan,
 \newblock ``Real time lane detection for autonomous vehicles,''
@@ -24,12 +30,6 @@ K.~Y. Chin and S.~F. Lin,
 \newblock ``Lane detection using color-based segmentation,''
 \newblock in {\em Proceedings of the {IEEE} Intelligent Vehicles Symposium},
   2005, pp. 706--711.
-
-\bibitem{borkar_layered_2009}
-A.~Borkar, M.~H. Hayes, M.~T. Smith, and S.~Pankanti,
-\newblock ``A layered approach to robust lane detection at night,''
-\newblock in {\em 2009 {IEEE} Workshop on Computational Intelligence in
-  Vehicles and Vehicular Systems}, 2009.
 
 \bibitem{wang_real-time_2006}
 H.~Wang and Q.~Chen,
