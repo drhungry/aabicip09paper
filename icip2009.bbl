@@ -1,13 +1,13 @@
 \begin{thebibliography}{10}
 
 \bibitem{borkar_layered_2009}
-A.~Borkar, M.~H. Hayes, M.~T. Smith, and S.~Pankanti,
+A.~Borkar, M.~Hayes, M.~Smith, and S.~Pankanti,
 \newblock ``A layered approach to robust lane detection at night,''
 \newblock in {\em 2009 {IEEE} Workshop on Computational Intelligence in
   Vehicles and Vehicular Systems}, 2009.
 
 \bibitem{assidiq_real_2008}
-{A.A.M.} Assidiq, {O.O.} Khalifa, R.~Islam, and S.~Khan,
+A.~Assidiq, O.~Khalifa, R.~Islam, and S.~Khan,
 \newblock ``Real time lane detection for autonomous vehicles,''
 \newblock in {\em International Conference on Computer and Communication
   Engineering}, 2008, pp. 82--88.
@@ -20,13 +20,13 @@ C.~C. Wang, S.~S. Huang, and L.~C. Fu,
   Robots and Systems {(IROS} 2005)}, 2005, pp. 3530--3535.
 
 \bibitem{sun_hsi_2006}
-T.~Y. Sun, S.~J. Tsai, and V.~Chan,
+T.~Sun, S.~Tsai, and V.~Chan,
 \newblock ``{HSI} color model based {Lane-Marking} detection,''
 \newblock in {\em {IEEE} Intelligent Transportation Systems Conference}, 2006,
   pp. 1168--1172.
 
 \bibitem{chin_lane_2005}
-K.~Y. Chin and S.~F. Lin,
+K.~Chin and S.~Lin,
 \newblock ``Lane detection using color-based segmentation,''
 \newblock in {\em Proceedings of the {IEEE} Intelligent Vehicles Symposium},
   2005, pp. 706--711.
@@ -50,31 +50,31 @@ Y.~Shu and Z.~Tan,
   2004, vol.~6, pp. 5258--5260.
 
 \bibitem{bertozzi_gold:parallel_1998}
-M~Bertozzi and A~Broggi,
+M.~Bertozzi and A.~Broggi,
 \newblock ``{GOLD:} a parallel real-time stereo vision system for generic
   obstacle and lane detection,''
 \newblock {\em {IEEE} Transactions on Image Processing}, vol. 7, no. 1, pp.
   62--81, 1998.
 
 \bibitem{hartley_multiple_2004}
-Richard Hartley and Andrew Zisserman,
+R.~Hartley and A.~Zisserman,
 \newblock {\em Multiple View Geometry in Computer Vision},
 \newblock Cambridge University Press, 2 edition, Apr. 2004.
 
 \bibitem{fischler_random_1981}
-Martin~A. Fischler and Robert~C. Bolles,
+M.~Fischler and R.~Bolles,
 \newblock ``Random sample consensus: a paradigm for model fitting with
   applications to image analysis and automated cartography,''
 \newblock {\em Communications of the {ACM}}, vol. 24, no. 6, pp. 381--395,
   1981.
 
 \bibitem{hayes_statistical_1996}
-Monson~H. Hayes,
+M.~Hayes,
 \newblock {\em Statistical Digital Signal Processing and Modeling},
 \newblock Wiley, Mar. 1996.
 
 \bibitem{brookner_tracking_1998}
-Eli Brookner,
+E.~Brookner,
 \newblock {\em Tracking and Kalman Filtering Made Easy},
 \newblock {Wiley-Interscience}, Apr. 1998.
 

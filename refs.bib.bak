@@ -57,11 +57,19 @@
 	pages = {74--79}
 },
 
-@inproceedings{amol_borkar_layered_2009,
+@book{hayes_statistical_1996,
+	title = {Statistical Digital Signal Processing and Modeling},
+	isbn = {0471594318},
+	publisher = {Wiley},
+	author = {M. H. Hayes},
+	month = mar,
+	year = {1996}
+},
+
+@inproceedings{borkar_layered_2009,
 	title = {A Layered Approach To Robust Lane Detection At Night},
 	booktitle = {2009 {IEEE} Workshop on Computational Intelligence in Vehicles and Vehicular Systems},
-	author = {Amol Borkar and Monson Hayes {III} and Mark T. Smith and Sharathchandra Pankanti},
-	month = apr,
+	author = {A. Borkar and M. H. Hayes and M. T. Smith and S. Pankanti},
 	year = {2009}
 },
 
@@ -250,7 +258,7 @@
 	volume = {7},
 	number = {1},
 	journal = {{IEEE} Transactions on Image Processing},
-	author = {M Bertozzi and A Broggi},
+	author = {M. Bertozzi and A. Broggi},
 	year = {1998},
 	pages = {62--81}
 },
@@ -394,7 +402,7 @@ and Research Challenges},
 	volume = {24},
 	number = {6},
 	journal = {Communications of the {ACM}},
-	author = {Martin A. Fischler and Robert C. Bolles},
+	author = {M. A. Fischler and R. C. Bolles},
 	year = {1981},
 	pages = {381--395}
 },
@@ -501,6 +509,16 @@ and Research Challenges},
 	pages = {20--37}
 },
 
+@book{hartley_multiple_2004,
+	edition = {2},
+	title = {Multiple View Geometry in Computer Vision},
+	isbn = {0521540518},
+	publisher = {Cambridge University Press},
+	author = {R. Hartley and A. Zisserman},
+	month = apr,
+	year = {2004}
+},
+
 @inproceedings{chen_edge-based_2007,
 	title = {Edge-based Lane Change Detection and its Application to Suspicious Driving Behavior Analysis},
 	volume = {2},
@@ -534,6 +552,15 @@ and Research Challenges},
 	author = {J. Wang and S. Schroedl and K. Mezger and R. Ortloff and A. Joos and T. Passegger},
 	year = {2003},
 	pages = {649-- 654}
+},
+
+@book{brookner_tracking_1998,
+	title = {Tracking and Kalman Filtering Made Easy},
+	isbn = {0471184071},
+	publisher = {{Wiley-Interscience}},
+	author = {E. Brookner},
+	month = apr,
+	year = {1998}
 },
 
 @misc{_lane_????,
