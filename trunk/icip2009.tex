@@ -36,7 +36,7 @@
 % Two addresses (uncomment and modify for two-address case).
 % ----------------------------------------------------------
 \twoauthors
-  {Amol A. Borkar, Monson H. Hayes III}
+  {Amol Borkar, Monson Hayes}
 	{\small{Center for Signal and Image Processing (CSIP)}\\
 	\small{Georgia Institute of Technology}\\
 	\small{Atlanta, GA}\\
@@ -85,7 +85,7 @@ involve complicated issues related to law and liability.
 In this paper, we address some of the image processing challenges is designing a
 lane detection system.  It is organized as follows.
 After a brief survey of some previous research, we then describe the various
-components of the system.  These include image enhancement using temporal blurring,
+components of the system.  These include image pre-processing using temporal blurring,
 inverse projective mapping to create a bird's-eye view of the road, a Hough transform
 for detecting candidate lane markers, a random sample consensus algorithm to
 help deal with outliers in the image, and tracking of the lane parameters using a Kalman filter.
@@ -104,12 +104,10 @@ Although dealing with images from the camera perspective allows access to raw da
 
 Many of the systems described above perform well under certain driving conditions and often require that a certain set assumptions are valid.  Some of these assumptions include the  presence of strong lane marker contrast and roads devoid of artifacts such as cracks, arrows, or similar markers. Unfortunately, these assumptions do not hold in many high traffic urban streets and highways.
 
-This paper describes the combination of several image enhancement and filtering methods that yield substantially improved results.
-
 \section{Methodology}
 \label{sec:methodology}
 This paper extends the layered lane detection approach in \cite{borkar_layered_2009} by (1) using an inverse perspective mapping, (2) applying a random sample consensus to help eliminate outliers, and (3) using a Kalman filter for prediction and smoothing.
-In the following sections, the various components of our lane detection system are described.
+In the following sections, the various components of the lane detection system are described.
 \subsection{Image Enhancement}
 The captured color images undergo a grayscale transformation and temporal blurring by averaging $N=3$ successive frames.  This smoothing helps connect dashed lane markers to form a near continuous line \cite{borkar_layered_2009}.
 \subsection{Inverse Perspective Mapping}
@@ -128,21 +126,21 @@ With this transformation, lane detection now becomes a problem of detecting a pa
 In addition, this transformation enables a mapping between pixels in the image plane to world co-ordinates (feet) as shown in Fig. \ref{fig:ipm_feet}. The camera's intrinsic and extrinsic parameters are necessary to ensure an accurate transformation.
 \subsection{Lane Candidate Location Detection}
 Next, an adaptive threshold is applied to the IPM image to generate a binary image \cite{borkar_layered_2009}. Each binary image is then split into two two halves, each one presumably containing one lane marker.
-A low resolution Hough transform is then computed on the binary images and a set of $X=10$ highest scoring lines are found for each half image \cite{borkar_layered_2009}. Each line is then sampled along its length at a specified distance as indicated by the red ``+" indicator in each line in Fig. \ref{fig:sampling_points}.
+A low-resolution Hough transform is then computed on the binary images and the ten highest scoring lines are found for each half image \cite{borkar_layered_2009}. Each line is then sampled along its length at a specified distance as illustrated by the red plus signs in Fig. \ref{fig:sampling_points}.
 %This is further illustrated in Fig. \ref{fig:sampling_points}, where the red lines symbolize the lines detected by computing the Hough transform, and, the yellow lines symbolize the discrete sampling locations.
 %The corresponding location of each of these points in the IPM average image is recovered.
 \begin{figure}[htb]
   \centering
   \includegraphics[width=0.45\textwidth]{IMG/cand_lane_points.png}
-  \caption{Each green line represents a high scoring line of the Hough transform, and the + indicators show the locations where the line are to be sampled.}
+  \caption{The green lines represent high-scoring lines from the Hough transform, and the plus signs indicate the points where each line is to be sampled.}
   \label{fig:sampling_points}
 \end{figure}
-To find the approximate center of each line, a one-dimensional matched filter is applied at each sample point along each of the $X$ lines.
+To find the approximate center of each line, a one-dimensional matched filter is applied at each sample point along each line.
 As described in \cite{borkar_layered_2009}, the matched filter is a Gaussian with a variance that is a function of the line width.
 Since the bird's-eye view created with the IPM produces lines of approximately constant width, a fixed variance Gaussian kernel may be used for the matched filter.
 %This was not the case in \cite{borkar_layered_2009} where a variety of variances had to be used to create the kernel on different scanlines. Matched filtering is iteratively performed on the remaining X-1 lines.
 %As each of the X lines is sampled at the specific co-ordinates, X filtering results are available at each of these positions upon completing the iterations.
-After the matched filtering, the pixel with the largest correlation coefficient at each sample point is selected as best estimate of the center of the lane marker as shown by green ``+" indicator in Fig. \ref{fig:cand_pts}.
+After the matched filtering, the pixel with the largest correlation coefficient at each sample point is selected as the best estimate of the center of the lane marker as indicated by the green plus signs in Fig. \ref{fig:cand_pts}.
 \begin{figure}[htb]
   \centering
   \includegraphics[width=0.45\textwidth]{IMG/rho_theta.png}
@@ -150,12 +148,12 @@ After the matched filtering, the pixel with the largest correlation coefficient 
   \label{fig:cand_pts}
 \end{figure}
 \subsection{Outlier Elimination and Data Modeling}
-Once a candidate lane marker position is identified at each sample point for each candidate line, Random Sample Consensus (RANSAC) is applied to the data points. The generic RANSAC algorithm robustly fits a model through the most probable data set or inliers while rejecting outliers \cite{hartley_multiple_2004,fischler_random_1981}. Linear Least Squares Estimation (LSE) is then used to fit to a line on the inliers. Fig. \ref{fig:cand_pts} illustrates the parametrization of the fitted line in terms of $\rho$ and $\theta$. $\rho$ is the perpendicular vector from the origin (top left corner pixel) to the line and $\theta$ is the angle of this vector with respect to the horizontal axis (generally is close to $90^\circ$).
+Once the center of each candidate line at each sample point has been estimated, Random Sample Consensus (RANSAC) is applied to the data points. The generic RANSAC algorithm robustly fits a model through the most probable data set or inliers while rejecting outliers \cite{hartley_multiple_2004,fischler_random_1981}. Linear Least Squares Estimation (LSE) is then used to fit to a line on the inliers. Fig. \ref{fig:cand_pts} illustrates the parametrization of the fitted line in terms of $\rho$ and $\theta$ where $\rho$ is the distance from the origin (top left corner pixel) to the line and $\theta$ is the angle as indicated in Fig. \ref{fig:cand_pts} (generally is close to $90^\circ$).
 %The orientation of line is specified by $\rho$ (vertical distance to the line from the origin, which is the top left corner pixel) and $\theta$ (the angle of the line, which generally is close to zero degrees).
 %For data fitting, a line was chosen over a parabolic fit since the latter is more sensitive to minor perturbations within the inliers, this can result sometimes in desirably shaped curves.\\
 \subsection{Tracking}
 The parameters of each line is predicted using a Kalman filter.
-The state vector $x(n)$ and observation vector $y(n)$ are defined as
+The state vector \textbf{x}($n$) and observation vector \textbf{y}($n$) are defined as
 \begin{equation}
     {\bf x}(n)= {\bf y}(n)
      = \left[ \begin{array}{cccc}
@@ -163,19 +161,19 @@ The state vector $x(n)$ and observation vector $y(n)$ are defined as
         \end{array} \right]^T
 \label{eq:state_measure_vectors}
 \end{equation}\\
-where $\rho$ and $\theta$ define the line orientation and $\dot{\rho}$ and $\dot{\theta}$ are the derivatives of $\rho$ and $\theta$ that are found by forming the difference in $\rho $ and $\theta $ between the current and previous frame.
+where $\rho$ and $\theta$ define the line orientation and $\dot{\rho}$ and $\dot{\theta}$ are the derivatives of $\rho$ and $\theta$ that are estimated using the difference in $\rho $ and $\theta $ between the current and previous frame.
 The state transition matrix $A$ is
 %and observation model $C$ are defined as
 \begin{equation}
 A = \begin{bmatrix} 1 && 1 && 0 && 0 \\ 0 && 1 && 0 && 0 \\ 0 && 0 && 1 && 1 \\ 0 && 0 && 0 && 1 \\\end{bmatrix}\\
 \label{eq:state_trans}
 \end{equation}\\
-and the matrix $C$ in the measurement equation is identity.
+and the matrix $C$ in the measurement equation is the identity matrix.
 %\begin{equation}
 %C = \begin{bmatrix} 1 && 0 && 0 && 0 \\ 0 && 1 && 0 && 0 \\ 0 && 0 && 1 && 0 \\ 0 && 0 && %0 && 1 \\\end{bmatrix}\\
 %\label{eq:observation_model}
 %\end{equation}\\
-The independence between the variables in $x(n)$ and $y(n)$ allows creation of simple covariance matrices $Q_w$ and $Q_v$. $Q_w$ and $Q_v$ represent the process and observation noise respectively \cite{hayes_statistical_1996}.
+%Independence between parameters $\rho$, $\theta$, $\dot{\rho}$ and $\dot{\theta}$ allows creation of simple covariance matrices $Q_w$ and $Q_v$. $Q_w$ and $Q_v$ represent the process and observation noise respectively \cite{hayes_statistical_1996}.
 %\begin{algorithm}[htb]
 %\caption{Kalman filter implementation}
 %\label{algo:Kalman_Implementation}
@@ -189,7 +187,7 @@ The independence between the variables in $x(n)$ and $y(n)$ allows creation of s
 %\ENDFOR
 %\end{algorithmic}
 %\end{algorithm}
-The covariance matrices are defined as identity and multiplied with non-uniform weights along the diagonal, these weights correspond to the variances of the parameters in $x(n)$ and $y(n)$. The Kalman filter recursively predicts the parameters in the state vector from the previously available information \cite{hayes_statistical_1996,brookner_tracking_1998}.
+The noise in the state and measurement equations is assumed to be white and uncorrelated, so the covariance matrices $Q_w$ and $Q_v$ for these processes are constant diagonal matrices \cite{hayes_statistical_1996}. However, the variance of each noise process is different, and each variance is computed over a predetermined set of frames. The Kalman filter recursively predicts the parameters in the state vector from the previously available information \cite{hayes_statistical_1996,brookner_tracking_1998}.
 %$P(n)$ and $K(n)$ represent error covariance matrix and optimal Kalman gain.
 In the case of a lane markers not being detected, the matrix $C$ is set to zero
 %the values in $Q_v$ are increased significantly and $\hat{x}(n|n)$ is modified as follows
@@ -209,7 +207,7 @@ Video from the camera is recorded onto hard disks.
 \subsection{Results}
 The lane detection algorithm was implemented in Matlab and requires
 approximately 0.8 seconds to process each frame.
-The results in Table \ref{tab:laneDetectionCompare} illustrate the performance of the proposed system when applied to over 10 hours of captured video. The results also show improvement in accuracy over the system developed in \cite{borkar_layered_2009}. The lack of accessibility to implemented lane detection algorithms and turnkey software systems makes it impossible to compare results.
+The results in Table \ref{tab:laneDetectionCompare} illustrate the performance of the proposed system when applied to over 10 hours of captured video. The results also show an improvement in accuracy over the system described in \cite{borkar_layered_2009}. The lack of accessibility to implemented lane detection algorithms and turnkey software systems makes it extremely difficult to compare results.
 \begin{table}[htb!]
 \caption{Accuracy of the lane detection system}
 \label{tab:laneDetectionCompare}
@@ -235,7 +233,7 @@ The results are quantified in terms of detection rate per minute. This metric al
   \subfloat[Presence of other markings on the road.]{\label{fig:temp_blur_after}\includegraphics[width=0.237\textwidth]{IMG/res2.png}}\\
   \subfloat[Busy Highway.]{\label{fig:temp_blur_before}\includegraphics[width=0.237\textwidth]{IMG/res3.png}}\hspace{0.00001in}
   \subfloat[Busy city streets.]{\label{fig:temp_blur_after}\includegraphics[width=0.237\textwidth]{IMG/res4.png}}\\
-  \caption{Successful lane detections in various environments.}
+  \caption{Examples of accurate lane detection.}
   \label{fig:lane_detection}
 \end{figure}
 
@@ -254,7 +252,7 @@ Despite noisy measurements, the Kalman filter recursively estimates the dynamics
 %  \subfloat[Lane change]{\label{fig:lane_detection_wrong2}\includegraphics[width=0.237\textwidth]{IMG/fail2.png}}\\
   \subfloat[Poorly maintained city streets.]{\label{fig:lane_detection_wrong3}\includegraphics[width=0.237\textwidth]{IMG/fail3.png}}%\hspace{0.00001in}
 %  \subfloat[Sharp turns]{\label{fig:lane_detection_wrong4}\includegraphics[width=0.237\textwidth]{IMG/fail4.png}}\\
-  \caption{Inaccurate lane detections in a few scenes.}
+  \caption{Examples of inaccurate lane detection.}
   \label{fig:lane_detection_wrong}
 \end{figure}
 

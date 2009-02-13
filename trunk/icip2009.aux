@@ -9,11 +9,11 @@
 \citation{assidiq_real_2008}
 \citation{sun_hsi_2006}
 \citation{wang_real-time_2006}
+\citation{borkar_layered_2009}
 \@writefile{toc}{\contentsline {section}{\numberline {1} Introduction}{1}}
 \newlabel{sec:intro}{{1}{1}}
 \@writefile{toc}{\contentsline {section}{\numberline {2} Prior Research}{1}}
 \newlabel{sec:prior}{{2}{1}}
-\citation{borkar_layered_2009}
 \citation{borkar_layered_2009}
 \citation{sehestedt_robust_2007}
 \citation{shu_vision_2004}
@@ -37,20 +37,19 @@
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Bird's-eye view.}}}{2}}
 \newlabel{fig:ipm}{{1}{2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3} Lane Candidate Location Detection}{2}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Each green line represents a high scoring line of the Hough transform, and the + indicators show the locations where the line are to be sampled.\relax }}{2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces The green lines represent high-scoring lines from the Hough transform, and the plus signs indicate the points where each line is to be sampled.\relax }}{2}}
 \newlabel{fig:sampling_points}{{2}{2}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Line fitted through one set of candidate points and parameterized with $\rho $ and $\theta $.\relax }}{2}}
 \newlabel{fig:cand_pts}{{3}{2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.4} Outlier Elimination and Data Modeling}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5} Tracking}{2}}
+\newlabel{eq:state_measure_vectors}{{1}{2}}
 \citation{hayes_statistical_1996}
 \citation{hayes_statistical_1996}
 \citation{brookner_tracking_1998}
 \citation{borkar_layered_2009}
 \citation{borkar_layered_2009}
 \citation{borkar_layered_2009}
-\citation{borkar_layered_2009}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5} Tracking}{3}}
-\newlabel{eq:state_measure_vectors}{{1}{3}}
 \newlabel{eq:state_trans}{{2}{3}}
 \@writefile{toc}{\contentsline {section}{\numberline {4} Experimental Analysis}{3}}
 \newlabel{sec:exp_ana}{{4}{3}}
@@ -66,12 +65,15 @@
 \newlabel{sub@fig:temp_blur_before}{{(c)}{c}}
 \newlabel{fig:temp_blur_after}{{4d}{3}}
 \newlabel{sub@fig:temp_blur_after}{{(d)}{d}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Successful lane detections in various environments.\relax }}{3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Examples of accurate lane detection.\relax }}{3}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Active toll plaza.}}}{3}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Presence of other markings on the road.}}}{3}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Busy Highway.}}}{3}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {Busy city streets.}}}{3}}
 \newlabel{fig:lane_detection}{{4}{3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Comparison between observed and predicted values of $\rho $ over a range of frames. A blow up shows the Kalman filter smoothing the noisy measurements.\relax }}{3}}
+\newlabel{fig:obs_pred_kalman}{{5}{3}}
+\citation{borkar_layered_2009}
 \bibstyle{IEEEbib}
 \bibdata{refs}
 \bibcite{borkar_layered_2009}{1}
@@ -87,13 +89,11 @@
 \bibcite{fischler_random_1981}{11}
 \bibcite{hayes_statistical_1996}{12}
 \bibcite{brookner_tracking_1998}{13}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Comparison between observed and predicted values of $\rho $ over a range of frames. A blow up shows the Kalman filter smoothing the noisy measurements.\relax }}{4}}
-\newlabel{fig:obs_pred_kalman}{{5}{4}}
 \newlabel{fig:lane_detection_wrong1}{{6a}{4}}
 \newlabel{sub@fig:lane_detection_wrong1}{{(a)}{a}}
 \newlabel{fig:lane_detection_wrong3}{{6b}{4}}
 \newlabel{sub@fig:lane_detection_wrong3}{{(b)}{b}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Inaccurate lane detections in a few scenes.\relax }}{4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Examples of inaccurate lane detection.\relax }}{4}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Unsettled after a bump.}}}{4}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Poorly maintained city streets.}}}{4}}
 \newlabel{fig:lane_detection_wrong}{{6}{4}}
