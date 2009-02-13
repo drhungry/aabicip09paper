@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.9 (MiKTeX 2.7) (preloaded format=pdflatex 2009.2.3)  12 FEB 2009 19:06
+This is pdfTeX, Version 3.1415926-1.40.9 (MiKTeX 2.7) (preloaded format=pdflatex 2009.2.3)  13 FEB 2009 13:57
 entering extended mode
 **D:/ICIP*2009/icip2009.tex
 ("D:/ICIP 2009/icip2009.tex"
@@ -269,57 +269,52 @@ File: IMG/ipm22.png Graphic file (type png)
 File: IMG/cand_lane_points.png Graphic file (type png)
 
 <use IMG/cand_lane_points.png>
-<IMG/rho_theta.png, id=14, 361.8318pt x 176.8206pt>
+<IMG/rho_theta.png, id=14, 361.8318pt x 171.5208pt>
 File: IMG/rho_theta.png Graphic file (type png)
  <use IMG/rho_theta.png>
-Underfull \vbox (badness 1454) has occurred while \output is active []
-
- [2 <IMG/ipm11.png> <IMG/ipm22.png> <IMG/cand_lane_points.png (PNG copy)> <IMG/
-rho_theta.png>]
-Overfull \hbox (3.16852pt too wide) in paragraph at lines 227--227
+[2 <IMG/ipm11.png> <IMG/ipm22.png> <IMG/cand_lane_points.png (PNG copy)> <IMG/r
+ho_theta.png>]
+Overfull \hbox (3.16852pt too wide) in paragraph at lines 225--225
 []\OT1/ptm/m/n/10 Incorrect| 
  []
 
 
-Overfull \hbox (3.16852pt too wide) in paragraph at lines 227--227
+Overfull \hbox (3.16852pt too wide) in paragraph at lines 225--225
 []\OT1/ptm/m/n/10 Incorrect| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 210--229
+Underfull \hbox (badness 10000) in paragraph at lines 208--227
 
  []
 
-<IMG/res1.png, id=24, 483.30562pt x 362.85562pt>
+<IMG/res1.png, id=27, 483.30562pt x 362.85562pt>
 File: IMG/res1.png Graphic file (type png)
  <use IMG/res1.png>
-<IMG/res2.png, id=25, 483.30562pt x 362.85562pt>
+<IMG/res2.png, id=28, 483.30562pt x 362.85562pt>
 File: IMG/res2.png Graphic file (type png)
  <use IMG/res2.png>
-<IMG/res3.png, id=26, 501.37312pt x 376.40625pt>
+<IMG/res3.png, id=29, 501.37312pt x 376.40625pt>
 File: IMG/res3.png Graphic file (type png)
  <use IMG/res3.png>
-<IMG/res4.png, id=27, 483.30562pt x 362.85562pt>
+<IMG/res4.png, id=30, 483.30562pt x 362.85562pt>
 File: IMG/res4.png Graphic file (type png)
  <use IMG/res4.png>
-<IMG/obs_pred_rho.png, id=28, 714.0276pt x 417.7206pt>
+<IMG/obs_pred_rho.png, id=31, 714.0276pt x 417.7206pt>
 File: IMG/obs_pred_rho.png Graphic file (type png)
 
-<use IMG/obs_pred_rho.png> <IMG/fail1.png, id=29, 787.94376pt x 591.20876pt>
+<use IMG/obs_pred_rho.png> <IMG/fail1.png, id=32, 787.94376pt x 591.20876pt>
 File: IMG/fail1.png Graphic file (type png)
 
-<use IMG/fail1.png> <IMG/fail3.png, id=30, 501.37312pt x 376.40625pt>
+<use IMG/fail1.png> <IMG/fail3.png, id=33, 501.37312pt x 376.40625pt>
 File: IMG/fail3.png Graphic file (type png)
 
-<use IMG/fail3.png>
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [3 <IMG/res1.png (PNG copy)> <IMG/res2.png (PNG copy)> <IMG/res3.png (PNG copy
-)> <IMG/res4.png (PNG copy)>] (icip2009.bbl
+<use IMG/fail3.png> [3 <IMG/res1.png (PNG copy)> <IMG/res2.png (PNG copy)> <IMG
+/res3.png (PNG copy)> <IMG/res4.png (PNG copy)> <IMG/obs_pred_rho.png>]
+(icip2009.bbl
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1.
-) [4 <IMG/obs_pred_rho.png> <IMG/fail1.png> <IMG/fail3.png (PNG copy)>] (icip20
-09.aux)
+) [4 <IMG/fail1.png> <IMG/fail3.png (PNG copy)>] (icip2009.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -327,7 +322,7 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  3083 strings out of 95304
  42510 string characters out of 1183033
- 121711 words of memory out of 1500000
+ 120711 words of memory out of 1500000
  6251 multiletter control sequences out of 110000
  24705 words of font info for 54 fonts, out of 1200000 for 2000
  14 hyphenation exceptions out of 8191
@@ -342,7 +337,7 @@ ype1/bluesky/cm/cmsy9.pfb><C:/Program Files/MiKTeX 2.7/fonts/type1/urw/times/ut
 mb8a.pfb><C:/Program Files/MiKTeX 2.7/fonts/type1/urw/times/utmbi8a.pfb><C:/Pro
 gram Files/MiKTeX 2.7/fonts/type1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX
  2.7/fonts/type1/urw/times/utmri8a.pfb>
-Output written on icip2009.pdf (4 pages, 5972330 bytes).
+Output written on icip2009.pdf (4 pages, 5963525 bytes).
 PDF statistics:
  77 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)
