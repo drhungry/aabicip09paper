@@ -187,7 +187,14 @@ and the matrix $C$ in the measurement equation is the identity matrix.
 %\ENDFOR
 %\end{algorithmic}
 %\end{algorithm}
-The noise in the state and measurement equations is assumed to be white and uncorrelated, so the covariance matrices $Q_w$ and $Q_v$ for these processes are constant diagonal matrices \cite{hayes_statistical_1996}. However, the variance of each noise process is different, and each variance is set by computing the individual variances of parameters $\rho$, $\theta$, $\dot{\rho}$ and $\dot{\theta}$ over a predetermined set of frames. The Kalman filter recursively predicts the parameters in the state vector from the previously available information \cite{hayes_statistical_1996,brookner_tracking_1998}.
+The noise in the state and measurement equations is assumed to be white
+and each process is assumed to be uncorrelated with the others.
+Therefore, the covariance matrices for these vector random processes are
+constant and diagonal. The variance of each noise process is estimated
+ off-line using frames in which accurate estimates
+of the lanes were being produced.
+
+The Kalman filter recursively predicts the parameters in the state vector from the previously available information \cite{hayes_statistical_1996,brookner_tracking_1998}.
 %$P(n)$ and $K(n)$ represent error covariance matrix and optimal Kalman gain.
 In the case of a lane markers not being detected, the matrix $C$ is set to zero
 %the values in $Q_v$ are increased significantly and $\hat{x}(n|n)$ is modified as follows
@@ -208,32 +215,67 @@ Video from the camera is recorded onto hard disks.
 The lane detection algorithm was implemented in Matlab and requires
 approximately 0.8 seconds to process each frame.
 The results in Table \ref{tab:laneDetectionCompare} illustrate the performance of the proposed system when applied to over 10 hours of captured video. The results also show an improvement in accuracy over the system described in \cite{borkar_layered_2009}. The lack of accessibility to implemented lane detection algorithms and turnkey software systems makes it extremely difficult to compare results.
-\begin{table}[htb!]
-\caption{Accuracy of the lane detection system}
-\label{tab:laneDetectionCompare}
-\resizebox{0.48\textwidth}{!}{
-\begin{tabular}{|p{0.15\textwidth}|p{0.1\textwidth}|p{0.065\textwidth}|p{0.065\textwidth}|p{0.065\textwidth}|p{0.065\textwidth}|p{0.065\textwidth}|p{0.065\textwidth}|}
-\hline
-& & \multicolumn{6}{|c|}{Average Detection Rate Per Minute} \\ \cline{3-8}
-\multirow{2}{*}{Road type} & \multirow{2}{*}{Traffic type} & \multicolumn{3}{|c|}{Current System} & \multicolumn{3}{|c|}{Previous System \cite{borkar_layered_2009}}\\ \cline{3-8}
-& & Correct & Incorrect & Misses & Correct & Incorrect & Misses\\ \hline
-\multirow{2}{*}{Isolated Highway} & Light & 99.08\% & 0.99\% & 0\% & 89.69\% & 5.31\% & 5.19\%\\ \cline{2-8}
-& Moderate & 98.34\% & 1.65\% & 0\% & 91.47\% & 6.65\% & 1.87\%\\ \hline
-\multirow{2}{*}{Metro Highway} & Light & 98.37\% & 1.65\% & 0\% & 83.53\% & 8.89\% & 8.14\%\\ \cline{2-8}
-& Moderate & 96.34\% & 3.65\% & 0\% & 84.97\% & 10.33\% & 4.68\%\\ \hline
-\multirow{1}{*}{City Streets} & Variable & 86.39\% & 12.71\% & 0.78\% & 76.55\% & 11.94\% & 11.95\%\\ \hline
-\end{tabular}}
-\end{table}\\
-
+%\begin{table}[htb!]
+%\caption{Accuracy of the lane detection system}
+%\label{tab:laneDetectionCompare}
+%\resizebox{0.48\textwidth}{!}{
+%\begin{tabular}{|p{0.065\textwidth}|p{0.055\textwidth}|p{0.065\textwidth}|p{0.065\textwidth}|p{0.065\textwidth}|p{0.065\textwidth}|p{0.065\textwidth}|p{0.065\textwidth}|}
+%\hline
+%& & \multicolumn{6}{|c|}{Average Detection Rate Per Minute} \\ \cline{3-8}
+%\multirow{2}{*}{Road} & \multirow{2}{*}{Traffic} & \multicolumn{3}{|c|}{Current System} & \multicolumn{3}{|c|}{Previous System \cite{borkar_layered_2009}}\\ \cline{3-8}
+%& & Correct & Incorrect & Misses & Correct & Incorrect & Missed\\ \hline
+%%\multirow{2}{*}{Isolated} & Light & 99.08\% & 0.99\% & 0\% & 89.69\% & 5.31\% & 5.19\%\\ \cline{2-8}
+%Isolated & Light & 99.08\% & 0.99\% & 0\% & 89.69\% & 5.31\% & 5.19\%\\ \cline{2-8}
+%Highway & Mod. & 98.34\% & \normalsize{1.65\%} & 0\% & 91.47\% & 6.65\% & 1.87\%\\ \hline
+%Metro & Light & 98.37\% & 1.65\% & 0\% & 83.53\% & 8.89\% & 8.14\%\\ \cline{2-8}
+%Highway & Mod. & 96.34\% & 3.65\% & 0\% & 84.97\% & 10.33\% & 4.68\%\\ \hline
+%\multirow{1}{*}{City} & Variable & 86.39\% & 12.71\% & 0.78\% & 76.55\% & 11.94\% & 11.95\%\\ \hline
+%\end{tabular}}
+%\end{table}\\
 The captured videos contain scenes with a variety of traffic and illumination conditions that depict environments a driver might encounter \cite{borkar_layered_2009}. Fig. \ref{fig:lane_detection} shows a few of instances of detected lane markers.
 The results are quantified in terms of detection rate per minute. This metric allows to normalize the results when data is captured using cameras with different frame rates.
+\begin{table}[htb!]
+\caption{Accuracy of the current lane detection system}
+\label{tab:laneDetectionCompare}
+\resizebox{0.48\textwidth}{!}{
+\begin{tabular}{|p{0.08\textwidth}|p{0.07\textwidth}|p{0.065\textwidth}|p{0.065\textwidth}|p{0.065\textwidth}|}
+\hline
+%& & \multicolumn{3}{|c|}{Avg. Detection Rate Per Minute} \\ \cline{3-5}
+\multirow{2}{*}{Road Type} & \multirow{2}{*}{Traffic} & \multicolumn{3}{|c|}{Avg. Detection Rate Per Minute} \\ \cline{3-5}
+& & Correct & Incorrect & Misses \\ \hline
+%\multirow{2}{*}{Isolated} & Light & 99.08\% & 0.99\% & 0\% & 89.69\% & 5.31\% & 5.19\%\\ \cline{2-8}
+Isolated & Light & 99.08\% & 0.99\% & 0\% \\ \cline{2-5}
+Highway & Moderate & 98.34\% & 1.65\% & 0\% \\ \hline
+Metro & Light & 98.37\% & 1.65\% & 0\% \\ \cline{2-5}
+Highway & Moderate & 96.34\% & 3.65\% & 0\% \\ \hline
+\multirow{1}{*}{City} & Variable & 86.39\% & 12.71\% & 0.78\% \\ \hline
+\end{tabular}}
+\end{table}\\
+\begin{table}[htb!]
+\caption{Accuracy of the previous lane detection system \cite{borkar_layered_2009}}
+\label{tab:laneDetectionCompare2}
+\resizebox{0.48\textwidth}{!}{
+\begin{tabular}{|p{0.08\textwidth}|p{0.07\textwidth}|p{0.065\textwidth}|p{0.065\textwidth}|p{0.065\textwidth}|}
+\hline
+%& & \multicolumn{3}{|c|}{Avg. Detection Rate Per Minute} \\ \cline{3-5}
+\multirow{2}{*}{Road Type} & \multirow{2}{*}{Traffic} & \multicolumn{3}{|c|}{Avg. Detection Rate Per Minute} \\ \cline{3-5}
+& & Correct & Incorrect & Misses \\ \hline
+%\multirow{2}{*}{Isolated} & Light & 99.08\% & 0.99\% & 0\% & 89.69\% & 5.31\% & 5.19\%\\ \cline{2-8}
+Isolated & Light & 89.69\% & 5.31\% & 5.19\% \\ \cline{2-5}
+Highway & Moderate & 89.69\% & 5.31\% & 5.19\% \\ \hline
+Metro & Light & 91.47\% & 6.65\% & 1.87\% \\ \cline{2-5}
+Highway & Moderate & 84.97\% & 10.33\% & 4.68\% \\ \hline
+\multirow{1}{*}{City} & Variable & 76.55\% & 11.94\% & 11.95\% \\ \hline
+\end{tabular}}
+\end{table}
+
 \begin{figure}[htb!]
   \centering
   \subfloat[Active toll plaza.]{\label{fig:temp_blur_before}\includegraphics[width=0.237\textwidth]{IMG/res1.png}}\hspace{0.00001in}
   \subfloat[Presence of other markings on the road.]{\label{fig:temp_blur_after}\includegraphics[width=0.237\textwidth]{IMG/res2.png}}\\
   \subfloat[Busy Highway.]{\label{fig:temp_blur_before}\includegraphics[width=0.237\textwidth]{IMG/res3.png}}\hspace{0.00001in}
   \subfloat[Busy city streets.]{\label{fig:temp_blur_after}\includegraphics[width=0.237\textwidth]{IMG/res4.png}}\\
-  \caption{Successful lane detections in various environments.}
+  \caption{Examples of accurate lane detection.}
   \label{fig:lane_detection}
 \end{figure}
 
@@ -241,7 +283,7 @@ The results are quantified in terms of detection rate per minute. This metric al
 Defining a ground truth for the data is extremely tedious; hence, it is commonly avoided. Consequently, detections are generally quantified based on visual inspection.
 \begin{figure}[htb!]
   \centering
-  \includegraphics[width=0.4\textwidth]{IMG/obs_pred_rho.png}\\
+  \includegraphics[width=0.5\textwidth]{IMG/obs_pred_rho.png}\\
   \caption{Comparison between observed and predicted values of $\rho$ over a range of frames. A blow up shows the Kalman filter smoothing the noisy measurements.}
   \label{fig:obs_pred_kalman}
 \end{figure}
