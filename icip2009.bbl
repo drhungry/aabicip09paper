@@ -68,14 +68,4 @@ M.~Fischler and R.~Bolles,
 \newblock {\em Communications of the {ACM}}, vol. 24, no. 6, pp. 381--395,
   1981.
 
-\bibitem{hayes_statistical_1996}
-M.~Hayes,
-\newblock {\em Statistical Digital Signal Processing and Modeling},
-\newblock Wiley, Mar. 1996.
-
-\bibitem{brookner_tracking_1998}
-E.~Brookner,
-\newblock {\em Tracking and Kalman Filtering Made Easy},
-\newblock {Wiley-Interscience}, Apr. 1998.
-
 \end{thebibliography}

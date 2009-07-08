@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.1415926-1.40.9 (MiKTeX 2.7) (preloaded format=pdflatex 2009.2.3)  13 FEB 2009 16:23
+This is pdfTeX, Version 3.1415926-1.40.9 (MiKTeX 2.7) (preloaded format=pdflatex 2009.4.8)  7 JUL 2009 22:07
 entering extended mode
-**D:/ICIP*2009/icip2009.tex
-("D:/ICIP 2009/icip2009.tex"
+**icip2009.tex
+(icip2009.tex
 LaTeX2e <2005/12/01>
 Babel <v3.8l> and hyphenation patterns for english, dumylang, nohyphenation, ge
 rman, ngerman, german-x-2008-06-18, ngerman-x-2008-06-18, french, loaded.
@@ -274,42 +274,42 @@ File: IMG/rho_theta.png Graphic file (type png)
  <use IMG/rho_theta.png>
 [2 <IMG/ipm11.png> <IMG/ipm22.png> <IMG/cand_lane_points.png (PNG copy)> <IMG/r
 ho_theta.png>]
-Overfull \hbox (2.84221pt too wide) in paragraph at lines 251--251
+Overfull \hbox (2.84221pt too wide) in paragraph at lines 231--231
 [][]| 
  []
 
 
-Overfull \hbox (3.16852pt too wide) in paragraph at lines 251--251
+Overfull \hbox (3.16852pt too wide) in paragraph at lines 231--231
 []\OT1/ptm/m/n/10 Incorrect| 
  []
 
 
-Overfull \hbox (2.86372pt too wide) in paragraph at lines 251--251
+Overfull \hbox (2.86372pt too wide) in paragraph at lines 231--231
 []\OT1/ptm/m/n/10 Moderate| 
  []
 
 
-Overfull \hbox (2.86372pt too wide) in paragraph at lines 251--251
+Overfull \hbox (2.86372pt too wide) in paragraph at lines 231--231
 []\OT1/ptm/m/n/10 Moderate| 
  []
 
 
-Overfull \hbox (2.84221pt too wide) in paragraph at lines 268--268
+Overfull \hbox (2.84221pt too wide) in paragraph at lines 249--249
 [][]| 
  []
 
 
-Overfull \hbox (3.16852pt too wide) in paragraph at lines 268--268
+Overfull \hbox (3.16852pt too wide) in paragraph at lines 249--249
 []\OT1/ptm/m/n/10 Incorrect| 
  []
 
 
-Overfull \hbox (2.86372pt too wide) in paragraph at lines 268--268
+Overfull \hbox (2.86372pt too wide) in paragraph at lines 249--249
 []\OT1/ptm/m/n/10 Moderate| 
  []
 
 
-Overfull \hbox (2.86372pt too wide) in paragraph at lines 268--268
+Overfull \hbox (2.86372pt too wide) in paragraph at lines 249--249
 []\OT1/ptm/m/n/10 Moderate| 
  []
 
@@ -329,7 +329,7 @@ File: IMG/res4.png Graphic file (type png)
 File: IMG/obs_pred_rho.png Graphic file (type png)
 
 <use IMG/obs_pred_rho.png>
-Overfull \hbox (8.53583pt too wide) in paragraph at lines 283--283
+Overfull \hbox (8.53583pt too wide) in paragraph at lines 262--262
  [][] 
  []
 
@@ -349,13 +349,13 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 3084 strings out of 95304
- 42537 string characters out of 1183033
+ 3081 strings out of 95304
+ 42450 string characters out of 1183033
  122711 words of memory out of 1500000
- 6252 multiletter control sequences out of 110000
+ 6250 multiletter control sequences out of 110000
  24705 words of font info for 54 fonts, out of 1200000 for 2000
  14 hyphenation exceptions out of 8191
- 44i,16n,45p,851b,374s stack positions out of 5000i,500n,10000p,200000b,5000s
+ 44i,16n,45p,1056b,374s stack positions out of 5000i,500n,10000p,200000b,5000s
 {C:/Program Files/MiKTeX 2.7/fonts/enc/dvips/fontname/8r.enc}<C:/Program File
 s/MiKTeX 2.7/fonts/type1/bluesky/cm/cmbx10.pfb><C:/Program Files/MiKTeX 2.7/fon
 ts/type1/bluesky/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.7/fonts/type1/bluesky
@@ -366,7 +366,7 @@ ype1/bluesky/cm/cmsy9.pfb><C:/Program Files/MiKTeX 2.7/fonts/type1/urw/times/ut
 mb8a.pfb><C:/Program Files/MiKTeX 2.7/fonts/type1/urw/times/utmbi8a.pfb><C:/Pro
 gram Files/MiKTeX 2.7/fonts/type1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX
  2.7/fonts/type1/urw/times/utmri8a.pfb>
-Output written on icip2009.pdf (4 pages, 5962872 bytes).
+Output written on icip2009.pdf (4 pages, 5962695 bytes).
 PDF statistics:
  77 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)
