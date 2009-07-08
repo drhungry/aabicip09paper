@@ -140,7 +140,7 @@ As described in \cite{borkar_layered_2009}, the matched filter is a Gaussian wit
 Since the bird's-eye view created with the IPM produces lines of approximately constant width, a fixed variance Gaussian kernel may be used for the matched filter.
 %This was not the case in \cite{borkar_layered_2009} where a variety of variances had to be used to create the kernel on different scanlines. Matched filtering is iteratively performed on the remaining X-1 lines.
 %As each of the X lines is sampled at the specific co-ordinates, X filtering results are available at each of these positions upon completing the iterations.
-After the matched filtering, the pixel with the largest correlation coefficient at each sample point is selected as the best estimate of the center of the lane marker as indicated by the green plus signs in Fig. \ref{fig:cand_pts}.
+After the matched filtering, the pixel with the largest correlation coefficient at each sample point that exceeds a predetermined threshold is selected as the best estimate of the center of the lane marker as indicated by the green plus signs in Fig. \ref{fig:cand_pts}. The minimum threshold allows to ignore false positives like cracks, tar patches or cases where lane markers do not exist.
 \begin{figure}[htb]
   \centering
   \includegraphics[width=0.45\textwidth]{IMG/rho_theta.png}
@@ -193,7 +193,6 @@ Therefore, the covariance matrices for these vector random processes are
 constant and diagonal. The variance of each noise process is estimated
  off-line using frames in which accurate estimates
 of the lanes were being produced.
-
 The Kalman filter recursively predicts the parameters in the state vector from the previously available information \cite{hayes_statistical_1996,brookner_tracking_1998}.
 %$P(n)$ and $K(n)$ represent error covariance matrix and optimal Kalman gain.
 In the case of a lane markers not being detected, the matrix $C$ is set to zero
@@ -214,7 +213,7 @@ Video from the camera is recorded onto hard disks.
 \subsection{Results}
 The lane detection algorithm was implemented in Matlab and requires
 approximately 0.8 seconds to process each frame.
-The results in Table \ref{tab:laneDetectionCompare} illustrate the performance of the proposed system when applied to over 10 hours of captured video. The results also show an improvement in accuracy over the system described in \cite{borkar_layered_2009}. The lack of accessibility to implemented lane detection algorithms and turnkey software systems makes it extremely difficult to compare results.
+Table \ref{tab:laneDetectionCompare} and Table \ref{tab:laneDetectionCompare2} illustrate the performance of the current and previous lane detection systems when applied to over 10 hours of captured video. The results in Table \ref{tab:laneDetectionCompare} show an improvement in accuracy over the system described in \cite{borkar_layered_2009}. The lack of accessibility to other lane detection algorithms and turnkey software systems makes it extremely difficult to compare results.
 %\begin{table}[htb!]
 %\caption{Accuracy of the lane detection system}
 %\label{tab:laneDetectionCompare}
@@ -268,7 +267,6 @@ Highway & Moderate & 84.97\% & 10.33\% & 4.68\% \\ \hline
 \multirow{1}{*}{City} & Variable & 76.55\% & 11.94\% & 11.95\% \\ \hline
 \end{tabular}}
 \end{table}
-
 \begin{figure}[htb!]
   \centering
   \subfloat[Active toll plaza.]{\label{fig:temp_blur_before}\includegraphics[width=0.237\textwidth]{IMG/res1.png}}\hspace{0.00001in}
@@ -278,7 +276,6 @@ Highway & Moderate & 84.97\% & 10.33\% & 4.68\% \\ \hline
   \caption{Examples of accurate lane detection.}
   \label{fig:lane_detection}
 \end{figure}
-
 %As a result, computing the error between ground truth and prediction is not possible.
 Defining a ground truth for the data is extremely tedious; hence, it is commonly avoided. Consequently, detections are generally quantified based on visual inspection.
 \begin{figure}[htb!]
@@ -307,7 +304,7 @@ The data set used to test the accuracy of the proposed system was recorded on In
 
 \section{Future Work}
 \label{sec:print}
-Lane Departure Warning (LDW) will be implemented in the future. It will leverage from the lane detection system's ability to accurately determine the distance to the lane markers as shown in Fig. \ref{fig:lane_detection}. By analyzing the velocity and acceleration of lane marker movement, the driver can be notified of an up coming lane change. Further investigation is needed to enable day time lane detection. In addition, the implemented algorithms will be ported to C++ with the help of existing libraries like OpenCV and VXL to facilitate a real-time system.
+Lane Departure Warning (LDW) will be implemented in the future. It will leverage from the lane detection system's ability to accurately determine the distance to the lane markers as shown in Fig. \ref{fig:lane_detection}. In addition, the implemented algorithms will be ported to C$\#$ and C++ to facilitate a real-time system. Future data sets will also include ground truth information to allow accurate error calculation. With the acquisition of additional man power, multiple users will be used to perform visual inspection. Finally, the image enhancement stage will be made adaptive by computing $N$ as a function of the speed of the vehicle.
 %\vfill
 %\pagebreak
 
