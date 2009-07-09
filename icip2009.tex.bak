@@ -140,7 +140,7 @@ As described in \cite{borkar_layered_2009}, the matched filter is a Gaussian wit
 Since the bird's-eye view created with the IPM produces lines of approximately constant width, a fixed variance Gaussian kernel may be used for the matched filter.
 %This was not the case in \cite{borkar_layered_2009} where a variety of variances had to be used to create the kernel on different scanlines. Matched filtering is iteratively performed on the remaining X-1 lines.
 %As each of the X lines is sampled at the specific co-ordinates, X filtering results are available at each of these positions upon completing the iterations.
-After the matched filtering, the pixel with the largest correlation coefficient at each sample point that exceeds a predetermined threshold is selected as the best estimate of the center of the lane marker as indicated by the green plus signs in Fig. \ref{fig:cand_pts}. The minimum threshold allows to ignore false positives like cracks, tar patches or cases where lane markers do not exist.
+After the matched filtering, the pixel with the largest correlation coefficient at each sample point that exceeds a predetermined threshold is selected as the best estimate of the center of the lane marker as indicated by the green plus signs in Fig. \ref{fig:cand_pts}. The minimum threshold helps in ignoring false positives like cracks, tar patches or cases where lane markers do not exist.
 \begin{figure}[htb]
   \centering
   \includegraphics[width=0.45\textwidth]{IMG/rho_theta.png}
@@ -193,7 +193,6 @@ Therefore, the covariance matrices for these vector random processes are
 constant and diagonal. The variance of each noise process is estimated
  off-line using frames in which accurate estimates
 of the lanes were being produced.
-The Kalman filter recursively predicts the parameters in the state vector from the previously available information \cite{hayes_statistical_1996,brookner_tracking_1998}.
 %$P(n)$ and $K(n)$ represent error covariance matrix and optimal Kalman gain.
 In the case of a lane markers not being detected, the matrix $C$ is set to zero
 %the values in $Q_v$ are increased significantly and $\hat{x}(n|n)$ is modified as follows
@@ -201,42 +200,22 @@ In the case of a lane markers not being detected, the matrix $C$ is set to zero
 %\hat{x}(n|n) = \hat{x}(n|n-1)
 %\label{eq:xnn_mod}
 %\end{equation}\\
-forcing the Kalman filter to rely purely on prediction.
-
-Finally, the estimated line is mapped back to the camera perspective to portray the lane detection results.
+forcing the Kalman filter to rely purely on prediction. Finally, the estimated line is mapped back to the camera perspective to portray the lane detection results.
 
 \section{Experimental Analysis}
 \label{sec:exp_ana}
 \subsection{Hardware}
-The hardware used to test and evaluate this new lane detection system is built around an Intel based computer.  A forward facing Firewire color camera is installed below the rear-view mirror so that it has a clear view of the road ahead. The Firewire allows video to be captured at VGA resolution and 30fps.
-Video from the camera is recorded onto hard disks.
+The hardware used to test and evaluate this new lane detection system is built around an Intel based computer.  A forward facing Firewire color camera is installed below the rear-view mirror so that it has a clear view of the road ahead. Video is captured in VGA resolution at 30fps.
 \subsection{Results}
 The lane detection algorithm was implemented in Matlab and requires
 approximately 0.8 seconds to process each frame.
-Table \ref{tab:laneDetectionCompare} and Table \ref{tab:laneDetectionCompare2} illustrate the performance of the current and previous lane detection systems when applied to over 10 hours of captured video. The results in Table \ref{tab:laneDetectionCompare} show an improvement in accuracy over the system described in \cite{borkar_layered_2009}. The lack of accessibility to other lane detection algorithms and turnkey software systems makes it extremely difficult to compare results.
-%\begin{table}[htb!]
-%\caption{Accuracy of the lane detection system}
-%\label{tab:laneDetectionCompare}
-%\resizebox{0.48\textwidth}{!}{
-%\begin{tabular}{|p{0.065\textwidth}|p{0.055\textwidth}|p{0.065\textwidth}|p{0.065\textwidth}|p{0.065\textwidth}|p{0.065\textwidth}|p{0.065\textwidth}|p{0.065\textwidth}|}
-%\hline
-%& & \multicolumn{6}{|c|}{Average Detection Rate Per Minute} \\ \cline{3-8}
-%\multirow{2}{*}{Road} & \multirow{2}{*}{Traffic} & \multicolumn{3}{|c|}{Current System} & \multicolumn{3}{|c|}{Previous System \cite{borkar_layered_2009}}\\ \cline{3-8}
-%& & Correct & Incorrect & Misses & Correct & Incorrect & Missed\\ \hline
-%%\multirow{2}{*}{Isolated} & Light & 99.08\% & 0.99\% & 0\% & 89.69\% & 5.31\% & 5.19\%\\ \cline{2-8}
-%Isolated & Light & 99.08\% & 0.99\% & 0\% & 89.69\% & 5.31\% & 5.19\%\\ \cline{2-8}
-%Highway & Mod. & 98.34\% & \normalsize{1.65\%} & 0\% & 91.47\% & 6.65\% & 1.87\%\\ \hline
-%Metro & Light & 98.37\% & 1.65\% & 0\% & 83.53\% & 8.89\% & 8.14\%\\ \cline{2-8}
-%Highway & Mod. & 96.34\% & 3.65\% & 0\% & 84.97\% & 10.33\% & 4.68\%\\ \hline
-%\multirow{1}{*}{City} & Variable & 86.39\% & 12.71\% & 0.78\% & 76.55\% & 11.94\% & 11.95\%\\ \hline
-%\end{tabular}}
-%\end{table}\\
-The captured videos contain scenes with a variety of traffic and illumination conditions that depict environments a driver might encounter \cite{borkar_layered_2009}. Fig. \ref{fig:lane_detection} shows a few of instances of detected lane markers.
-The results are quantified in terms of detection rate per minute. This metric allows to normalize the results when data is captured using cameras with different frame rates.
+Table \ref{tab:laneDetectionCompare} and Table \ref{tab:laneDetectionCompare2} illustrate the performance of the current and previous lane detection systems when applied to over 10 hours of captured video. The results in Table \ref{tab:laneDetectionCompare} show an improvement in accuracy over the system described in \cite{borkar_layered_2009} when tested with similar data sets. The lack of accessibility to other lane detection algorithms and turnkey software systems makes it extremely difficult to compare results.
+In addition, defining a ground truth for the data is extremely tedious; hence, it is commonly avoided. Consequently, detections were qualitative and based purely on visual inspection by single user. The following rules were used to quantify the results into the different categories: i) a correct detection occurs when more than 50\% the of lane marker estimate is overlaid on a lane marker in the scene, ii) an incorrect detection occurs when the estimate is overlaid on something else other than a lane marker, and iii) a missed detection occurs when no estimate is presented despite a relevant lane marker being visible. The detection rates of left and right markers are averaged to produce the numbers in both tables. Fig. \ref{fig:lane_detection} shows a few instances of correct lane detections. The results are presented in terms of detection rate per minute. This metric allows to normalize the results when data is captured using cameras with different frame rates.
 \begin{table}[htb!]
+\centering
 \caption{Accuracy of the current lane detection system}
 \label{tab:laneDetectionCompare}
-\resizebox{0.48\textwidth}{!}{
+\resizebox{0.43\textwidth}{!}{
 \begin{tabular}{|p{0.08\textwidth}|p{0.07\textwidth}|p{0.065\textwidth}|p{0.065\textwidth}|p{0.065\textwidth}|}
 \hline
 %& & \multicolumn{3}{|c|}{Avg. Detection Rate Per Minute} \\ \cline{3-5}
@@ -251,9 +230,10 @@ Highway & Moderate & 96.34\% & 3.65\% & 0\% \\ \hline
 \end{tabular}}
 \end{table}\\
 \begin{table}[htb!]
+\centering
 \caption{Accuracy of the previous lane detection system \cite{borkar_layered_2009}}
 \label{tab:laneDetectionCompare2}
-\resizebox{0.48\textwidth}{!}{
+\resizebox{0.43\textwidth}{!}{
 \begin{tabular}{|p{0.08\textwidth}|p{0.07\textwidth}|p{0.065\textwidth}|p{0.065\textwidth}|p{0.065\textwidth}|}
 \hline
 %& & \multicolumn{3}{|c|}{Avg. Detection Rate Per Minute} \\ \cline{3-5}
@@ -269,42 +249,41 @@ Highway & Moderate & 84.97\% & 10.33\% & 4.68\% \\ \hline
 \end{table}
 \begin{figure}[htb!]
   \centering
-  \subfloat[Active toll plaza.]{\label{fig:temp_blur_before}\includegraphics[width=0.237\textwidth]{IMG/res1.png}}\hspace{0.00001in}
-  \subfloat[Presence of other markings on the road.]{\label{fig:temp_blur_after}\includegraphics[width=0.237\textwidth]{IMG/res2.png}}\\
-  \subfloat[Busy Highway.]{\label{fig:temp_blur_before}\includegraphics[width=0.237\textwidth]{IMG/res3.png}}\hspace{0.00001in}
-  \subfloat[Busy city streets.]{\label{fig:temp_blur_after}\includegraphics[width=0.237\textwidth]{IMG/res4.png}}\\
+  \subfloat[Active toll plaza.]{\label{fig:temp_blur_before}\includegraphics[width=0.235\textwidth]{IMG/res1.png}}\hspace{0.00001in}
+  \subfloat[Presence of other markings on the road.]{\label{fig:temp_blur_after}\includegraphics[width=0.235\textwidth]{IMG/res2.png}}\\
+  \subfloat[Busy Highway.]{\label{fig:temp_blur_before}\includegraphics[width=0.235\textwidth]{IMG/res3.png}}\hspace{0.00001in}
+  \subfloat[Busy city streets.]{\label{fig:temp_blur_after}\includegraphics[width=0.235\textwidth]{IMG/res4.png}}\\
   \caption{Examples of accurate lane detection.}
   \label{fig:lane_detection}
 \end{figure}
-%As a result, computing the error between ground truth and prediction is not possible.
-Defining a ground truth for the data is extremely tedious; hence, it is commonly avoided. Consequently, detections are generally quantified based on visual inspection.
 \begin{figure}[htb!]
   \centering
   \includegraphics[width=0.5\textwidth]{IMG/obs_pred_rho.png}\\
   \caption{Comparison between observed and predicted values of $\rho$ over a range of frames. A blow up shows the Kalman filter smoothing the noisy measurements.}
   \label{fig:obs_pred_kalman}
 \end{figure}
+
 Despite noisy measurements, the Kalman filter recursively estimates the dynamics of the state vector. Fig. \ref{fig:obs_pred_kalman} shows a comparison between the observed and predicted value of $\rho$.
 \begin{figure}[htb!]
   \centering
-  \subfloat[Unsettled after a bump.]{\label{fig:lane_detection_wrong1}\includegraphics[width=0.237\textwidth]{IMG/fail1.png}}\hspace{0.00001in}
+  \subfloat[Unsettled after a bump.]{\label{fig:lane_detection_wrong1}\includegraphics[width=0.235\textwidth]{IMG/fail1.png}}\hspace{0.00001in}
 %  \subfloat[Lane change]{\label{fig:lane_detection_wrong2}\includegraphics[width=0.237\textwidth]{IMG/fail2.png}}\\
-  \subfloat[Poorly maintained city streets.]{\label{fig:lane_detection_wrong3}\includegraphics[width=0.237\textwidth]{IMG/fail3.png}}%\hspace{0.00001in}
+  \subfloat[Poorly maintained city streets.]{\label{fig:lane_detection_wrong3}\includegraphics[width=0.235\textwidth]{IMG/fail3.png}}%\hspace{0.00001in}
 %  \subfloat[Sharp turns]{\label{fig:lane_detection_wrong4}\includegraphics[width=0.237\textwidth]{IMG/fail4.png}}\\
-  \caption{Examples of inaccurate lane detection.}
+  \caption{Examples of incorrect lane detection.}
   \label{fig:lane_detection_wrong}
 \end{figure}
 
-A few instances of incorrect lane detections are also shown in Fig. \ref{fig:lane_detection_wrong}. Fortunately in Fig. \ref{fig:lane_detection_wrong1}, the Kalman filter is able to settle within a couple of milliseconds after passing the bump on the road. However, in Fig. \ref{fig:lane_detection_wrong3}, the absence of lane markers due to road aging and wear leads to the detection and tracking of false signals such as cracks.
+A few instances of incorrect lane detections are also shown in Fig. \ref{fig:lane_detection_wrong}. Fortunately in Fig. \ref{fig:lane_detection_wrong1}, the Kalman filter is able to settle within a few milliseconds after passing the bump on the road. However, in Fig. \ref{fig:lane_detection_wrong3}, the absence of lane markers due to road aging and wear leads to the detection and tracking of false signals such as cracks.
 \section{Conclusions}
 \label{sec:concl}
 The work presented in this paper is a significant improvement over the layered lane detection system presented in \cite{borkar_layered_2009}. The addition of features such as (1) Inverse Perspective Mapping (IPM), (2) Random Sample Consensus (RANSAC), and (3) Kalman filtering has added to the novelty and extension over the previous system. IPM aids in simplifying the process of finding candidate lane markers, while RANSAC helps in rejecting outliers within the estimations. Finally, the Kalman filter ignores minor perturbations and keeps the lane marker sequence on its track.
 
-The data set used to test the accuracy of the proposed system was recorded on Interstate highways and city streets in and around Atlanta, GA. Despite the variety in traffic conditions and road quality encountered, the proposed system still yielded good performance as reflected in Table \ref{tab:laneDetectionCompare}.
+The data set used to test the accuracy of the proposed system was recorded on highways and streets in and around Atlanta, GA. Despite the variety in traffic conditions and road quality encountered, the proposed system still yielded good performance as reflected in Table \ref{tab:laneDetectionCompare}.
 
 \section{Future Work}
 \label{sec:print}
-Lane Departure Warning (LDW) will be implemented in the future. It will leverage from the lane detection system's ability to accurately determine the distance to the lane markers as shown in Fig. \ref{fig:lane_detection}. In addition, the implemented algorithms will be ported to C$\#$ and C++ to facilitate a real-time system. Future data sets will also include ground truth information to allow accurate error calculation. With the acquisition of additional man power, multiple users will be used to perform visual inspection. Finally, the image enhancement stage will be made adaptive by computing $N$ as a function of the speed of the vehicle.
+Lane Departure Warning (LDW) will be implemented in the future. It will leverage from the lane detection system's ability to accurately determine the distance to the lane markers as shown in Fig. \ref{fig:lane_detection}. In addition, the implemented algorithms will be ported to C\# and C++ to facilitate a real-time system. Future data sets will also include ground truth information to allow accurate error calculation. Additional users will also perform visual inspection. Finally, the image enhancement stage will be made adaptive by computing $N$ as a function of the speed of the vehicle.
 %\vfill
 %\pagebreak
 
